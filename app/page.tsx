@@ -15,7 +15,7 @@ export default function Home() {
       <Header />
       <main id="top">
         <div className="hero">
-          <div className="im"><Photo file="hero.jpg" label="Hero background image (1920x1080)" alt="City skyline" priority /></div>
+          <div className="im"><Photo file="hero.webp" label="Hero background image (1920x1080)" alt="City skyline" priority /></div>
           <div className="veil" />
           <div className="w hc">
             <span className="k">✦ Accounting · Taxation · Advisory · Finance · Analytics</span>
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         <section id="about"><div className="w two al">
-          <div className="im tall"><Photo file="about.jpg" label="About image (900x1100)" alt="Finance team reviewing reports" sizes="(max-width:860px) 100vw, 560px" /></div>
+          <div className="im tall"><Photo file="about.webp" label="About image (900x1100)" alt="Finance team reviewing reports" sizes="(max-width:860px) 100vw, 560px" /></div>
           <div>
             <span className="eb line">Who We Are</span>
             <h2>A modern accounting and analytics consultancy built for growing businesses.</h2>

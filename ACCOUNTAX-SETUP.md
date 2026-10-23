@@ -6,7 +6,7 @@ It adds: app/api/contact/route.ts, components/*, public/images/README.txt, .env.
 If your repo uses src/, move app/ and components/ into src/ (imports are relative).
 
 ## Images
-Put your images in public/images/ using the exact file names listed in public/images/README.txt.
+Put your images in public/images/ using the exact .webp file names listed in public/images/README.txt.
 No code change needed: a labelled placeholder shows until the file exists.
 
 ## Env vars (Vercel + .env.local), see .env.example
