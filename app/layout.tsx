@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const fd = Fraunces({ subsets: ["latin"], variable: "--fd" });
-const fb = Inter({ subsets: ["latin"], variable: "--fb" });
+const fd = Playfair_Display({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--fd" });
+const fb = DM_Sans({ subsets: ["latin"], variable: "--fb" });
 
 export const metadata: Metadata = {
   title: "Accountax Consultants | Accounting, Taxation, Advisory and Analytics",

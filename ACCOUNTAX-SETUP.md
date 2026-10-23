@@ -1,13 +1,19 @@
-# Accountax site: Next.js App Router files
+# Accountax homepage (Next.js App Router)
 
-Assumes a Next.js App Router + TypeScript repo with NO src/ folder (default create-next-app).
-Extract this zip at the repo root. It overwrites:
-- app/layout.tsx, app/page.tsx, app/globals.css
-and adds: app/api/contact/route.ts, components/Header.tsx, components/ContactForm.tsx, components/data.ts, .env.example
+Assumes Next.js App Router + TypeScript, NO src/ folder. Extract this zip at the repo root.
+It overwrites: app/layout.tsx, app/page.tsx, app/globals.css
+It adds: app/api/contact/route.ts, components/*, public/images/README.txt, .env.example
+If your repo uses src/, move app/ and components/ into src/ (imports are relative).
 
-If your repo uses src/, move app/ and components/ into src/ (imports are relative, so they keep working).
+## Images
+Put your images in public/images/ using the exact file names listed in public/images/README.txt.
+No code change needed: a labelled placeholder shows until the file exists.
 
-Env vars (Vercel > Settings > Environment Variables, and .env.local locally): see .env.example.
-RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL (sender must be a verified Resend domain/address).
+## Env vars (Vercel + .env.local), see .env.example
+RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL (verified sender). Missing = form says "not connected", sends nothing.
+Optional: NEXT_PUBLIC_CONTACT_EMAIL, NEXT_PUBLIC_WHATSAPP.
 
-Not included: logo (temporary SVG in components/Header.tsx), privacy/terms/disclaimer pages, sitemap/robots/canonical (need final domain), rate limiting beyond a honeypot (add Cloudflare Turnstile before heavy traffic).
+## Not yet built
+Detail pages (about, 6 service pages, industries, how-we-work, insights, careers, legal), logo (temporary SVG in components/Header.tsx),
+sitemap/robots/canonical (need final domain), rate limiting beyond honeypot (add Cloudflare Turnstile).
+Service and industry cards link to #contact until their detail pages exist.
