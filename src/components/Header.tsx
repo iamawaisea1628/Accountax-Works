@@ -3,15 +3,17 @@ import Link from "next/link";
 import { useState } from "react";
 import { Wordmark } from "./ui";
 
-const nav = [
+const baseNav = [
   { href: "/services/", label: "Services" },
   { href: "/countries/", label: "Countries & Regions" },
   { href: "/industries/", label: "Industries" },
   { href: "/about/", label: "About" },
 ];
+const insightsLink = { href: "/insights/", label: "Insights" };
 
-export function Header() {
+export function Header({ showInsights = false }: { showInsights?: boolean }) {
   const [open, setOpen] = useState(false);
+  const nav = showInsights ? [...baseNav.slice(0, 3), insightsLink, ...baseNav.slice(3)] : baseNav;
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink">
       <div className="mx-auto flex h-16 max-w-page items-center justify-between px-5 sm:px-8">

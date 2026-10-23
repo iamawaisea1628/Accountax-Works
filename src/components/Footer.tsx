@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/content/site";
-import { getPillars } from "@/lib/content";
+import { getInsights, getPillars } from "@/lib/content";
 import { Container, Wordmark } from "./ui";
 
 export function Footer() {
@@ -25,6 +25,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2">
             <li><Link className={link} href="/countries/">Countries &amp; Regions</Link></li>
             <li><Link className={link} href="/industries/">Industries</Link></li>
+            {getInsights().length > 0 && <li><Link className={link} href="/insights/">Insights</Link></li>}
             <li><Link className={link} href="/about/">About</Link></li>
             <li><Link className={link} href="/contact/">Contact</Link></li>
           </ul>

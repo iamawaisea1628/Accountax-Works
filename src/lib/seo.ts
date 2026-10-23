@@ -8,6 +8,7 @@ export function buildMetadata(o: { title: string; description: string; path: str
     description: o.description,
     alternates: { canonical: url },
     robots: o.noindex ? { index: false, follow: false } : undefined,
-    openGraph: { title: o.title, description: o.description, url, siteName: "Accountax", type: "website" },
+    openGraph: { title: o.title, description: o.description, url, siteName: "Accountax", type: "website", images: [{ url: `${site.url}/og/`, width: 1200, height: 630, alt: "Accountax" }] },
+    twitter: { card: "summary_large_image", title: o.title, description: o.description, images: [`${site.url}/og/`] },
   };
 }

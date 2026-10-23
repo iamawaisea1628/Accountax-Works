@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 
 type Errors = Record<string, string>;
 const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-const field = "mt-1 w-full border border-ink/40 bg-white px-3 py-2.5 text-base text-ink";
+const field = "mt-1 w-full border border-stone bg-white px-3 py-2.5 text-base text-ink";
 const label = "block text-sm font-semibold";
 
 function Field({ id, text, required, error, children }: { id: string; text: string; required?: boolean; error?: string; children: React.ReactNode }) {

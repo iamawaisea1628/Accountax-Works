@@ -80,6 +80,17 @@ export const countryServiceSchema = z
       ctx.addIssue({ code: "custom", message: "Published country-service needs reviewer and review dates." });
   });
 
+export const insightSchema = z.object({
+  ...base,
+  h1: z.string(),
+  category: z.string(),
+  author: z.string().nullable().default(null), // only when verified
+  pillarId: z.string().nullable().default(null),
+  bodySections: z.array(sectionSchema).min(1),
+  summaryPoints: z.array(z.string()).default([]),
+});
+export type Insight = z.infer<typeof insightSchema>;
+
 export const industrySchema = z.object({
   ...base,
   h1: z.string(),

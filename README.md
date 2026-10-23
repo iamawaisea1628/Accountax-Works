@@ -34,3 +34,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Checks
+- `npm test` (vitest): pillar order, seven markets, draft/unpublished handling, review-metadata rules, banned claims, placeholder leakage, unique SEO metadata, sitemap contents, contact schema.
+- Security headers (HSTS, nosniff, frame deny, referrer, permissions) are set in `next.config.ts`. No CSP yet.
+- `npm run content:report`: status counts, items awaiting review, and a blocking gate (published without review metadata/sources, or review overdue). See `docs/content-workflow.md`.

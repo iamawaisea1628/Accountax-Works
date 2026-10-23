@@ -2,6 +2,7 @@ import { pillars } from "@/content/pillars";
 import { countries } from "@/content/countries";
 import { industries } from "@/content/industries";
 import { services, countryServices } from "@/content/services";
+import { insights } from "@/content/insights";
 
 const pub = <T extends { status: string }>(xs: T[]) => xs.filter((x) => x.status === "published");
 
@@ -24,3 +25,5 @@ export const getCountryService = (countrySlug: string, serviceSlug: string) => {
   const s = getServices().find((x) => x.slug === serviceSlug);
   return c && s ? getCountryServices().find((cs) => cs.countryId === c.id && cs.serviceId === s.id) : undefined;
 };
+export const getInsights = () => pub(insights).sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""));
+export const getInsight = (slug: string) => getInsights().find((i) => i.slug === slug);
