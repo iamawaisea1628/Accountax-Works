@@ -26,6 +26,7 @@ export const IND: [string, string, string][] = [
 ["Retail and Trading","Inventory-linked accounting and tax records.","ind-retail.jpg"],
 ["International Groups","Consolidated reporting and cross-border coordination.","ind-international.jpg"],
 ["Accounting Practices","Outsourced and white-label delivery support.","ind-practices.jpg"],
+["Manufacturing and Distribution","Cost tracking, inventory valuation and margin reporting.","ind-manufacturing.jpg"],
 ];
 export const STEPS: [string, string][] = [
 ["Initial discussion","Understand your business, markets and goals."],
