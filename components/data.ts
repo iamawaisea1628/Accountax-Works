@@ -1,7 +1,7 @@
 // Service tuple: [title, description, tag, image file in /public/images]
 export const S: [string, string, string, string][] = [
-["Accounting and Financial Reporting","Bookkeeping, reconciliations, month-end close and financial statements, with accounting cleanup and software support.","Accounting","svc-accounting.jpg"],
-["Taxation and Compliance","Tax computations, filing support, VAT/GST where applicable, compliance calendars and cross-border coordination.","Tax","svc-tax.jpg"],
+["Accounting and Financial Reporting","Bookkeeping, payroll accounting, reconciliations, month-end close and financial statements, with accounting cleanup and software support.","Accounting","svc-accounting.jpg"],
+["Taxation and Compliance","Tax computations, filing support, payroll tax compliance, VAT/GST where applicable, compliance calendars and cross-border coordination.","Tax","svc-tax.jpg"],
 ["Financial and Business Advisory","Budgeting, forecasting, cash-flow management, profitability analysis, KPI reporting and virtual CFO support.","Advisory","svc-advisory.jpg"],
 ["Data Analytics and Business Intelligence","Power BI and Looker Studio dashboards, SQL and Python workflows, and automated reporting.","Analytics","svc-analytics.jpg"],
 ["Risk, Controls and Assurance Support","Control and process reviews, reconciliation testing, audit preparation and remediation tracking. Not statutory audit or independent assurance.","Finance","svc-risk.jpg"],
