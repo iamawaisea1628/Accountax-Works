@@ -1,12 +1,12 @@
 // Service tuple: [name, one-line summary, label, image file in /public/images]
 // Detailed offerings (bookkeeping, payroll accounting, etc.) belong on each service's own page.
 export const S: [string, string, string, string][] = [
-["Accounting","Accurate books, payroll accounting and financial reporting you can rely on.","Division 01","svc-accounting.webp"],
-["Taxation","Compliance-ready taxation support and record keeping for your jurisdiction.","Division 02","svc-tax.webp"],
-["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Division 03","svc-advisory.webp"],
-["Analytics","Dashboards and data workflows that turn financial data into insight.","Division 04","svc-analytics.webp"],
-["Risk and Controls","Process reviews and audit preparation support. Not statutory audit or independent assurance.","Division 05","svc-risk.webp"],
-["Fintech","Systems, integrations and automation, with every output reviewed by a person.","Division 06","svc-fintech.webp"],
+["Accounting","Accurate books, payroll accounting and financial reporting you can rely on.","Pillar 01","svc-accounting.webp"],
+["Taxation","Compliance-ready taxation support and record keeping for your jurisdiction.","Pillar 02","svc-tax.webp"],
+["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Pillar 03","svc-advisory.webp"],
+["Finance","Cash flow, working capital and day-to-day financial management for your business.","Pillar 04","svc-finance.webp"],
+["Analytics","Dashboards and data workflows that turn financial data into insight.","Pillar 05","svc-analytics.webp"],
+["Finance Technology","Systems, integrations and automation, with every output reviewed by a person.","Pillar 06","svc-fintech.webp"],
 ];
 export const ABOUT: [string, string][] = [
 ["Finance-first thinking","Every solution starts with your business economics, not just your data."],

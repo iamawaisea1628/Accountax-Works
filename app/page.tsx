@@ -23,7 +23,7 @@ export default function Home() {
             <p className="lead">Accounting, taxation support, financial advisory and business intelligence for companies ready to operate with greater clarity and control.</p>
             <div className="cta"><a className="btn" href="#contact">Discuss Your Requirements ✦</a><a className="btn o" href="#services">Explore Our Services</a></div>
             <div className="stats">
-              <div><b>6</b><span>Service divisions</span></div><div><b>5</b><span>Core disciplines</span></div>
+              <div><b>6</b><span>Service pillars</span></div><div><b>1</b><span>Integrated team</span></div>
               <div><b>100%</b><span>Remote delivery</span></div><div><b>6</b><span>Step engagement process</span></div>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Home() {
         </div></section>
 
         <section id="services" className="alt"><div className="w">
-          <Head eb="What We Do" h="Our Core Services" p="Six service divisions built on accounting expertise, modern data tools and smart automation. Scope and fees are agreed after we understand your needs." />
+          <Head eb="What We Do" h="Our Core Services" p="Six service pillars built on accounting expertise, modern data tools and smart automation. Scope and fees are agreed after we understand your needs." />
           <div className="g3">{S.map(([t, d, tag, img]) => (
             <a className="sc" href="#contact" key={t}>
               <div className="im"><Photo file={img} label={t} alt={t} sizes="(max-width:860px) 100vw, 380px" /></div><div className="ov" />
