@@ -1,11 +1,12 @@
-// Service tuple: [title, description, tag, image file in /public/images]
+// Service tuple: [name, one-line summary, label, image file in /public/images]
+// Detailed offerings (bookkeeping, payroll accounting, etc.) belong on each service's own page.
 export const S: [string, string, string, string][] = [
-["Accounting and Financial Reporting","Bookkeeping, payroll accounting, reconciliations, month-end close and financial statements, with accounting cleanup and software support.","Accounting","svc-accounting.webp"],
-["Taxation and Compliance","Tax computations, filing support, payroll tax compliance, VAT/GST where applicable, compliance calendars and cross-border coordination.","Tax","svc-tax.webp"],
-["Financial and Business Advisory","Budgeting, forecasting, cash-flow management, profitability analysis, KPI reporting and virtual CFO support.","Advisory","svc-advisory.webp"],
-["Data Analytics and Business Intelligence","Power BI and Looker Studio dashboards, SQL and Python workflows, and automated reporting.","Analytics","svc-analytics.webp"],
-["Risk, Controls and Assurance Support","Control and process reviews, reconciliation testing, audit preparation and remediation tracking. Not statutory audit or independent assurance.","Finance","svc-risk.webp"],
-["Fintech and Automation","System implementation, migration, integrations, data pipelines and AI-assisted workflows with human review.","Fintech","svc-fintech.webp"],
+["Accounting","Accurate books, payroll accounting and financial reporting you can rely on.","Division 01","svc-accounting.webp"],
+["Taxation","Compliance-ready tax support and record keeping for your jurisdiction.","Division 02","svc-tax.webp"],
+["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Division 03","svc-advisory.webp"],
+["Analytics","Dashboards and data workflows that turn financial data into insight.","Division 04","svc-analytics.webp"],
+["Risk and Controls","Process reviews and audit preparation support. Not statutory audit or independent assurance.","Division 05","svc-risk.webp"],
+["Fintech","Systems, integrations and automation, with every output reviewed by a person.","Division 06","svc-fintech.webp"],
 ];
 export const ABOUT: [string, string][] = [
 ["Finance-first thinking","Every solution starts with your business economics, not just your data."],
