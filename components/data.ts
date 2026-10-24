@@ -6,7 +6,7 @@ export const S: [string, string, string, string][] = [
 ["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Pillar 03","svc-advisory.webp"],
 ["Finance","Cash flow, working capital and day-to-day financial management for your business.","Pillar 04","svc-finance.webp"],
 ["Analytics","Dashboards and data workflows that turn financial data into insight.","Pillar 05","svc-analytics.webp"],
-["Finance Technology","Systems, integrations and automation, with every output reviewed by a person.","Pillar 06","svc-fintech.webp"],
+["Fintech","Systems, integrations and automation, with every output reviewed by a person.","Pillar 06","svc-fintech.webp"],
 ];
 export const ABOUT: [string, string][] = [
 ["Finance-first thinking","Every solution starts with your business economics, not just your data."],
