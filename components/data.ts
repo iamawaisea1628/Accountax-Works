@@ -2,7 +2,7 @@
 // Detailed offerings (bookkeeping, payroll accounting, etc.) belong on each service's own page.
 export const S: [string, string, string, string][] = [
 ["Accounting","Accurate books, payroll accounting and financial reporting you can rely on.","Division 01","svc-accounting.webp"],
-["Taxation","Compliance-ready tax support and record keeping for your jurisdiction.","Division 02","svc-tax.webp"],
+["Taxation","Compliance-ready taxation support and record keeping for your jurisdiction.","Division 02","svc-tax.webp"],
 ["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Division 03","svc-advisory.webp"],
 ["Analytics","Dashboards and data workflows that turn financial data into insight.","Division 04","svc-analytics.webp"],
 ["Risk and Controls","Process reviews and audit preparation support. Not statutory audit or independent assurance.","Division 05","svc-risk.webp"],
@@ -14,7 +14,7 @@ export const ABOUT: [string, string][] = [
 ["Jurisdiction-aware","Services are delivered within the qualifications and authorisations that apply in each country."],
 ];
 export const WHY: [string, string][] = [
-["One connected team","Accounting, tax, advisory and analytics work from the same records, so numbers agree across every report."],
+["One connected team","Accounting, taxation, advisory and analytics work from the same records, so numbers agree across every report."],
 ["Scope you can read","Deliverables, timelines and client responsibilities are written down before work begins."],
 ["Confidential by default","Client information is handled on a need-to-know basis with secure onboarding."],
 ["Reviewed before delivery","Automated and AI-assisted outputs are checked by a person before you see them."],
@@ -24,7 +24,7 @@ export const IND: [string, string, string][] = [
 ["Ecommerce","Marketplace reconciliations and margin analysis.","ind-ecommerce.webp"],
 ["Professional Services","Project profitability and recurring revenue reporting.","ind-professional.webp"],
 ["Real Estate","Property-level reporting and compliance records.","ind-realestate.webp"],
-["Retail and Trading","Inventory-linked accounting and tax records.","ind-retail.webp"],
+["Retail and Trading","Inventory-linked accounting and taxation records.","ind-retail.webp"],
 ["International Groups","Consolidated reporting and cross-border coordination.","ind-international.webp"],
 ["Accounting Practices","Outsourced and white-label delivery support.","ind-practices.webp"],
 ["Manufacturing and Distribution","Cost tracking, inventory valuation and margin reporting.","ind-manufacturing.webp"],

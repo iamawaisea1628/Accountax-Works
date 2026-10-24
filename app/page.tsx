@@ -20,7 +20,7 @@ export default function Home() {
           <div className="w hc">
             <span className="k">✦ Accounting · Taxation · Advisory · Finance · Analytics</span>
             <h1>Clarity in Your Numbers.<br /><span className="gd">Confidence in Your Decisions.</span></h1>
-            <p className="lead">Accounting, tax support, financial advisory and business intelligence for companies ready to operate with greater clarity and control.</p>
+            <p className="lead">Accounting, taxation support, financial advisory and business intelligence for companies ready to operate with greater clarity and control.</p>
             <div className="cta"><a className="btn" href="#contact">Discuss Your Requirements ✦</a><a className="btn o" href="#services">Explore Our Services</a></div>
             <div className="stats">
               <div><b>6</b><span>Service divisions</span></div><div><b>5</b><span>Core disciplines</span></div>
@@ -84,7 +84,7 @@ export default function Home() {
         </div></section>
 
         <section id="insights" className="alt"><div className="w">
-          <Head eb="Insights" h="Practical Finance Resources" p="Educational articles are in preparation. Jurisdiction-specific tax content will state the jurisdiction it applies to." />
+          <Head eb="Insights" h="Practical Finance Resources" p="Educational articles are in preparation. Jurisdiction-specific taxation content will state the jurisdiction it applies to." />
           <div className="g3">{INSIGHTS.map(([t, tag, img]) => (
             <article className="ac" key={t}>
               <div className="im"><Photo file={img} label="Article image (1200x700)" alt={t} sizes="(max-width:860px) 100vw, 380px" /></div>
@@ -96,7 +96,7 @@ export default function Home() {
           <div>
             <span className="eb line">Get In Touch</span>
             <h2>Ready to Bring Clarity to Your Financials?</h2>
-            <p className="mu">Tell us what you need and where your business operates. Please do not send bank credentials, tax-portal passwords, identity documents or financial records through this form.</p>
+            <p className="mu">Tell us what you need and where your business operates. Please do not send bank credentials, taxation-portal passwords, identity documents or financial records through this form.</p>
             {email && <p className="mu">Email: <a href={`mailto:${email}`}>{email}</a></p>}
           </div>
           <div className="cbox"><ContactForm /></div>
@@ -110,7 +110,7 @@ export default function Home() {
           <div><h4>Services</h4>{S.map((x) => <a key={x[0]} href="#services">{x[0]}</a>)}</div>
           <div><h4>Contact</h4>{email ? <a href={`mailto:${email}`}>{email}</a> : <span className="mu">Contact details to be added</span>}</div>
         </div>
-        <p className="dis">Accountax Consultants is a working brand name pending legal, trademark and domain clearance. Content is general information and not individual tax, legal or investment advice. Services depend on applicable qualifications and authorisations in each jurisdiction. Privacy policy, terms of use and professional disclaimer pages are in preparation.</p>
+        <p className="dis">Accountax Consultants is a working brand name pending legal, trademark and domain clearance. Content is general information and not individual taxation, legal or investment advice. Services depend on applicable qualifications and authorisations in each jurisdiction. Privacy policy, terms of use and professional disclaimer pages are in preparation.</p>
         <div className="fb"><span>&copy; Accountax Consultants. All rights reserved.</span><span>Accounting · Taxation · Advisory · Finance · Analytics</span></div>
       </div></footer>
       {wa && <a id="wa" style={{ display: "block" }} href={`https://wa.me/${wa}`}>Chat on WhatsApp</a>}
