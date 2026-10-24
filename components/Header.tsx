@@ -19,7 +19,7 @@ export default function Header() {
             <L h="#top" t="Home" /><L h="#about" t="About" />
             <li className="dd"><a href="#services" onClick={close}>Services</a>
               <div className="dd-m">{S.map((x) => <a key={x[0]} href="#services" onClick={close}>{x[0]}</a>)}</div></li>
-            <L h="#industries" t="Industries" /><L h="#how" t="How We Work" /><L h="#insights" t="Insights" /><L h="#contact" t="Contact" />
+            <L h="#industries" t="Industries" /><L h="#insights" t="Insights" /><L h="#contact" t="Contact" />
             <li><a className="btn sm" href="#contact" onClick={close}>Get Started</a></li>
           </ul>
         </nav>
