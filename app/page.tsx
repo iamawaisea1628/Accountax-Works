@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import ContactForm from "../components/ContactForm";
 import Photo from "../components/Photo";
+import HeroSlideshow from "../components/HeroSlideshow";
 import { S, ABOUT, WHY, IND, STEPS, TOOLS, INSIGHTS } from "../components/data";
 
 const Head = ({ eb, h, p, c = true }: { eb: string; h: string; p?: string; c?: boolean }) => (
@@ -15,7 +16,11 @@ export default function Home() {
       <Header />
       <main id="top">
         <div className="hero">
-          <div className="im"><Photo file="hero.webp" label="Hero background image (1920x1080)" alt="City skyline" priority /></div>
+          <HeroSlideshow slides={[
+            <Photo key="1" file="hero-1.webp" label="Hero image 1 (1920x1080)" alt="City skyline" priority />,
+            <Photo key="2" file="hero-2.webp" label="Hero image 2 (1920x1080)" alt="Finance team at work" />,
+            <Photo key="3" file="hero-3.webp" label="Hero image 3 (1920x1080)" alt="Business analytics" />,
+          ]} />
           <div className="veil" />
           <div className="w hc">
             <span className="k">✦ Accounting · Taxation · Advisory · Finance · Analytics</span>
@@ -108,9 +113,8 @@ export default function Home() {
           <div><a className="logo" href="#top"><span>ACCOUNT<b>AX</b></span></a><p className="mu" style={{ marginTop: 14 }}>Accounting, taxation, advisory, finance and analytics for businesses that want clearer numbers.</p></div>
           <div><h4>Company</h4><a href="#about">About</a><a href="#industries">Industries</a><a href="#insights">Insights</a><a href="#contact">Contact</a></div>
           <div><h4>Services</h4>{S.map((x) => <a key={x[0]} href="#services">{x[0]}</a>)}</div>
-          <div><h4>Contact</h4>{email ? <a href={`mailto:${email}`}>{email}</a> : <span className="mu">Contact details to be added</span>}</div>
+          <div><h4>Contact</h4>{email && <a href={`mailto:${email}`}>{email}</a>}<a href="#contact">Request a Consultation</a></div>
         </div>
-        <p className="dis">Accountax Consultants is a working brand name pending legal, trademark and domain clearance. Content is general information and not individual taxation, legal or investment advice. Services depend on applicable qualifications and authorisations in each jurisdiction. Privacy policy, terms of use and professional disclaimer pages are in preparation.</p>
         <div className="fb"><span>&copy; Accountax Consultants. All rights reserved.</span><span>Accounting · Taxation · Advisory · Finance · Analytics</span></div>
       </div></footer>
       {wa && <a id="wa" style={{ display: "block" }} href={`https://wa.me/${wa}`}>Chat on WhatsApp</a>}
