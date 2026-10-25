@@ -1,0 +1,10 @@
+.portal{min-height:100svh}
+.pbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--bd);background:linear-gradient(90deg,#0B0B0B,#20190c)}
+.pbar .who{color:var(--mu);font-size:.9rem;margin-right:14px}.pbar form{display:inline}
+.pw{max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+.pcard{border:1px solid var(--bd);border-radius:20px;background:linear-gradient(145deg,#231d11,#121110);padding:28px;margin-bottom:28px}
+.pcard h2{font-size:1.5rem}.pf{display:grid;gap:14px}
+.scroll{overflow-x:auto}table.pt{width:100%;border-collapse:collapse;font-size:.92rem}
+.pt th,.pt td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--bd);white-space:nowrap}
+.pt th{color:var(--g);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}.pt a{color:var(--g)}
+.lw{max-width:420px;margin:12vh auto;padding:0 24px}.pmsg{min-height:1.4em;font-size:.93rem}
