@@ -26,6 +26,7 @@ export default function LoginForm() {
       <div><label htmlFor="lp">Password</label><input id="lp" name="password" type="password" required autoComplete="current-password" /></div>
       <button className="btn" type="submit" disabled={busy}>{busy ? "Signing in..." : "Sign In"}</button>
       <p className="pmsg" role="status" style={{ color: "#e08a7d" }}>{msg}</p>
+      <a href="/portal/forgot" className="mu" style={{ fontSize: ".9rem" }}>Forgot your password?</a>
     </form>
   );
 }

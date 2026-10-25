@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const PUBLIC = ["/portal/login", "/portal/forgot", "/portal/auth/confirm"];
+
 // Refreshes the Supabase session and keeps /portal private. (Next.js 16 name for middleware.)
 export async function proxy(req: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -18,7 +20,7 @@ export async function proxy(req: NextRequest) {
   });
   const { data: { user } } = await sb.auth.getUser();
   const p = req.nextUrl.pathname;
-  if (!user && p !== "/portal/login") { const u = req.nextUrl.clone(); u.pathname = "/portal/login"; u.search = ""; return NextResponse.redirect(u); }
+  if (!user && !PUBLIC.includes(p)) { const u = req.nextUrl.clone(); u.pathname = "/portal/login"; u.search = ""; return NextResponse.redirect(u); }
   if (user && p === "/portal/login") { const u = req.nextUrl.clone(); u.pathname = "/portal"; return NextResponse.redirect(u); }
   return res;
 }

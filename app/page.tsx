@@ -111,7 +111,7 @@ export default function Home() {
       <footer><div className="w">
         <div className="fg">
           <div><a className="logo" href="#top"><span>ACCOUNT<b>AX</b></span></a><p className="mu" style={{ marginTop: 14 }}>Accounting, taxation, advisory, finance and analytics for businesses that want clearer numbers.</p></div>
-          <div><h4>Company</h4><a href="#about">About</a><a href="#industries">Industries</a><a href="#insights">Insights</a><a href="#contact">Contact</a></div>
+          <div><h4>Company</h4><a href="#about">About</a><a href="#industries">Industries</a><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="/portal/login">Client Login</a></div>
           <div><h4>Services</h4>{S.map((x) => <a key={x[0]} href="#services">{x[0]}</a>)}</div>
           <div><h4>Contact</h4>{email && <a href={`mailto:${email}`}>{email}</a>}<a href="#contact">Request a Consultation</a></div>
         </div>
