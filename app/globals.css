@@ -27,7 +27,7 @@ nav li>a:not(.btn):hover,nav li:first-child>a{color:var(--g);background:rgba(212
 /* hero */
 .hero{position:relative;min-height:min(940px,100svh);display:flex;align-items:center;border-bottom:1px solid var(--bd)}
 .hero>.im{position:absolute;inset:0}.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(52,38,12,.62) 55%,rgba(11,11,11,.94) 100%)}
-.hc{position:relative;text-align:center;padding-top:80px;padding-bottom:40px}
+.hc{position:relative;text-align:center;padding-top:80px;padding-bottom:84px}
 .k{display:inline-block;border:1px solid var(--g3);color:var(--g);border-radius:40px;padding:7px 20px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px;background:rgba(11,11,11,.4)}
 .lead{font-size:1.2rem;color:#d9d5cb;margin:0 auto 1.6em;max-width:56ch}.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}.hc .cta{justify-content:center}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);margin:64px auto 0;max-width:900px;border-top:1px solid var(--bd)}
@@ -88,3 +88,10 @@ section{padding:68px 0}.hero{min-height:auto}.cbox{padding:24px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 #about,#contact,section:not(.alt):not(#about):not(#contact){background:radial-gradient(ellipse 55% 45% at 92% 0%,rgba(212,175,87,.11),transparent 70%)}
 #contact{background:radial-gradient(ellipse 55% 50% at 8% 100%,rgba(212,175,87,.12),transparent 70%)}
+.hs{position:absolute;inset:0}
+.slide{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.2s ease}.slide.on{opacity:1}
+.dots{position:absolute;left:0;right:0;bottom:20px;z-index:2;display:flex;justify-content:center;align-items:center;gap:6px}
+.dots button{position:relative;width:44px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.dots button::after{content:"";position:absolute;left:4px;right:4px;top:10px;height:4px;border-radius:4px;background:rgba(246,243,236,.35)}
+.dots button[aria-current="true"]::after{background:var(--g)}
+.dots .pp{width:auto;padding:0 12px;color:var(--tx);font-size:.7rem}.dots .pp::after{display:none}
