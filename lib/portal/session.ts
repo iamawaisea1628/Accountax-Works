@@ -19,3 +19,10 @@ export async function need(role: "client" | "staff") {
   if (c.me.role !== role) redirect(role === "staff" ? "/portal" : "/portal/admin");
   return { sb: c.sb, me: c.me };
 }
+
+// For pages both roles can open (profile, invoice view).
+export async function needAny() {
+  const c = await getCtx();
+  if (!c.me) redirect("/portal/not-ready");
+  return { sb: c.sb, me: c.me };
+}

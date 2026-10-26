@@ -1,7 +1,7 @@
 import type { Me } from "../../lib/portal/session";
 
-const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"]];
-const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"]];
+const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"], ["/portal/profile", "Profile"]];
+const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"], ["/portal/profile", "Profile"]];
 
 export default function Shell({ me, active, title, error, children }: { me: Me; active: string; title: string; error?: string; children: React.ReactNode }) {
   const staff = me.role === "staff";

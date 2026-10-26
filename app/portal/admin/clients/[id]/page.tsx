@@ -6,7 +6,7 @@ import { need } from "../../../../../lib/portal/session";
 import { createRequest, setRequestStatus, createInvoice, setInvoiceStatus, sendMessage } from "../../../actions";
 import { fmtDate, fmtSize, money, who, pill, type Prof, type Doc, type Req, type Inv, type Msg } from "../../../../../lib/portal/format";
 
-const TABS: [string, string][] = [["documents", "Documents"], ["requests", "Requests"], ["invoices", "Invoices"], ["messages", "Messages"]];
+const TABS: [string, string][] = [["documents", "Documents"], ["requests", "Requests"], ["invoices", "Invoices"], ["messages", "Messages"], ["activity", "Activity"]];
 const hid = (n: string, v: string) => <input type="hidden" name={n} value={v} />;
 
 async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Promise<{ tab?: string; error?: string }> }) {
@@ -19,11 +19,12 @@ async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Pr
   if (!c) notFound();
   const ret = `/portal/admin/clients/${id}?tab=${tab}`;
   const q = (table: string, cols: string) => sb.from(table).select(cols).eq("client_id", id).order("created_at", { ascending: false }).limit(200);
-  const [docs, reqs, invs, msgs] = await Promise.all([
+  const [docs, reqs, invs, msgs, act] = await Promise.all([
     tab === "documents" ? q("documents", "id,name,size_bytes,created_at,client_id,uploaded_by").returns<Doc[]>() : null,
     tab === "requests" ? q("requests", "id,client_id,title,details,due_date,status,created_at").returns<Req[]>() : null,
     tab === "invoices" ? q("invoices", "id,client_id,number,description,amount,currency,due_date,status").returns<Inv[]>() : null,
     tab === "messages" ? q("messages", "id,client_id,sender_id,body,created_at").returns<Msg[]>() : null,
+    tab === "activity" ? sb.from("activity_log").select("id,actor_id,action,detail,created_at").eq("client_id", id).order("created_at", { ascending: false }).limit(150).returns<{ id: number; actor_id: string | null; action: string; detail: string | null; created_at: string }[]>() : null,
   ]);
   return (
     <Shell me={me} active="/portal/admin/clients" title={who(c)} error={error}>
@@ -61,7 +62,7 @@ async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Pr
             <div><button className="btn" type="submit">Create Invoice</button></div></form></div>
         <div className="pcard"><h2>Invoices</h2>{!invs?.data?.length ? <p className="mu">No invoices yet.</p> : (
           <div className="scroll"><table className="pt"><thead><tr><th>Number</th><th>Description</th><th>Amount</th><th>Due</th><th>Status</th><th /></tr></thead><tbody>
-            {invs.data.map((i) => <tr key={i.id}><td>{i.number}</td><td>{i.description}</td><td>{money(i.amount, i.currency)}</td><td>{fmtDate(i.due_date)}</td><td><span className={`pill ${pill(i.status)}`}>{i.status}</span></td>
+            {invs.data.map((i) => <tr key={i.id}><td><a href={`/portal/invoices/${i.id}`}>{i.number}</a></td><td>{i.description}</td><td>{money(i.amount, i.currency)}</td><td>{fmtDate(i.due_date)}</td><td><span className={`pill ${pill(i.status)}`}>{i.status}</span></td>
               <td><div className="row">{(["unpaid", "paid", "void"] as const).filter((s) => s !== i.status).map((s) => <form key={s} action={setInvoiceStatus}>{hid("id", i.id)}{hid("status", s)}{hid("returnTo", ret)}<button className="btn o sm2" type="submit">{s}</button></form>)}</div></td></tr>)}
           </tbody></table></div>)}</div></>}
 
@@ -71,6 +72,11 @@ async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Pr
           <form className="pf" action={sendMessage} style={{ gridTemplateColumns: "1fr" }}>{hid("client_id", id)}{hid("returnTo", ret)}
             <div><label htmlFor="mb">Reply to client</label><textarea id="mb" name="body" required maxLength={4000} /></div>
             <div><button className="btn" type="submit">Send</button></div></form></div>)}
+      {tab === "activity" && (
+        <div className="pcard"><h2>Activity log</h2>{!act?.data?.length ? <p className="mu">No activity recorded yet.</p> : (
+          <div className="scroll"><table className="pt"><thead><tr><th>When</th><th>By</th><th>Action</th><th>Detail</th></tr></thead><tbody>
+            {act.data.map((a) => <tr key={a.id}><td>{new Date(a.created_at).toLocaleString("en-GB")}</td><td>{a.actor_id === id ? "Client" : a.actor_id ? "Accountax" : "System"}</td><td>{a.action.replace(/_/g, " ")}</td><td>{a.detail}</td></tr>)}
+          </tbody></table></div>)}</div>)}
     </Shell>
   );
 }

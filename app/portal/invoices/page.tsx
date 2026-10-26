@@ -11,7 +11,7 @@ async function Content() {
       <div className="pcard">
         {!data?.length ? <p className="mu">No invoices yet.</p> : (
           <div className="scroll"><table className="pt"><thead><tr><th>Number</th><th>Description</th><th>Amount</th><th>Due</th><th>Status</th></tr></thead><tbody>
-            {data.map((i) => <tr key={i.id}><td>{i.number}</td><td>{i.description}</td><td>{money(i.amount, i.currency)}</td><td>{fmtDate(i.due_date)}</td><td><span className={`pill ${pill(i.status)}`}>{i.status}</span></td></tr>)}
+            {data.map((i) => <tr key={i.id}><td><a href={`/portal/invoices/${i.id}`}>{i.number}</a></td><td>{i.description}</td><td>{money(i.amount, i.currency)}</td><td>{fmtDate(i.due_date)}</td><td><span className={`pill ${pill(i.status)}`}>{i.status}</span></td></tr>)}
           </tbody></table></div>)}
       </div>
       <p className="mu">Payment details are shared by your Accountax contact. Payment status is updated by the team.</p>
