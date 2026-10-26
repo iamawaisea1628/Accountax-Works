@@ -16,7 +16,13 @@ export default function LoginForm() {
     setBusy(true); setMsg("");
     const { error } = await supabaseBrowser().auth.signInWithPassword({ email: String(d.get("email")).trim(), password: String(d.get("password")) });
     setBusy(false);
-    if (error) { setMsg("Email or password is incorrect."); return; }
+    if (error) {
+      const code = (error as { code?: string }).code ?? "";
+      if (code === "invalid_credentials") setMsg("Email or password is incorrect.");
+      else if (code === "email_not_confirmed") setMsg("This email is not verified yet. Please contact Accountax.");
+      else setMsg(`Sign in failed: ${error.message}${code ? ` (${code})` : ""}. Please contact Accountax if this continues.`);
+      return;
+    }
     router.replace("/portal"); router.refresh();
   }
 
