@@ -19,7 +19,7 @@ export async function proxy(req: NextRequest) {
     },
   });
   const { data: { user } } = await sb.auth.getUser();
-  const p = req.nextUrl.pathname;
+  const p = req.nextUrl.pathname.replace(/\/+$/, "") || "/"; // tolerate trailingSlash: true
   if (!user && !PUBLIC.includes(p)) { const u = req.nextUrl.clone(); u.pathname = "/portal/login"; u.search = ""; return NextResponse.redirect(u); }
   if (user && p === "/portal/login") { const u = req.nextUrl.clone(); u.pathname = "/portal"; return NextResponse.redirect(u); }
   return res;
