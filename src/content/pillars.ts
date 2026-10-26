@@ -22,7 +22,6 @@ const raw = [
       { question: "Can you clean up historical bookkeeping?", answer: "Historical cleanup may be considered after the volume, period, condition of records, systems, and deadline are reviewed." },
       { question: "Which accounting software do you support?", answer: "Support depends on the specific system and what you need done. Tell us which software you use and we will confirm during scoping." },
       { question: "Will I receive financial statements?", answer: "The engagement scope specifies which reports or statements are included and what review or approval is required." },
-      { question: "Do you provide statutory audit?", answer: "No. Audit and assurance services are not part of our current offering." },
     ],
   },
   {

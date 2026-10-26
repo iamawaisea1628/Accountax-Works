@@ -21,7 +21,6 @@ const faqs = [
   { question: "What services does Accountax provide?", answer: "Accountax's service framework covers accounting, taxation, advisory, finance, analytics, and finance technology. The precise scope depends on the service requested, your business, the relevant country, and current delivery availability." },
   { question: "Does Accountax work with businesses outside Pakistan?", answer: "The website is designed for selected international markets as well as Pakistan. Remote or local delivery is offered only where the service is available and permitted. Contact us with your country and requirements to discuss fit." },
   { question: "Can Accountax manage all our accounting and finance activities?", answer: "Potentially, depending on your requirements and the services currently available. We first review your needs and agree which activities, deliverables, responsibilities, and timelines are included." },
-  { question: "Does Accountax provide audit or assurance services?", answer: "No. Audit and assurance services are not part of our current offering." },
   { question: "How do we get started?", answer: `Email ${site.email} or submit the consultation form. Share your business type, country, and the support you are seeking. Please do not send sensitive financial documents through the public enquiry form.` },
 ];
 
