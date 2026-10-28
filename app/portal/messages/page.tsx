@@ -1,16 +1,16 @@
 import { Suspense } from "react";
 import Shell from "../../../components/portal/Shell";
-import { need } from "../../../lib/portal/session";
+import { needClient } from "../../../lib/portal/session";
 import { sendMessage } from "../actions";
 import { fmtDate, type Msg } from "../../../lib/portal/format";
 
 async function Content({ sp }: { sp: Promise<{ error?: string }> }) {
   const { error } = await sp;
-  const { sb, me } = await need("client");
-  const { data } = await sb.from("messages").select("id,client_id,sender_id,body,created_at").order("created_at", { ascending: false }).limit(100).returns<Msg[]>();
+  const { sb, me, org, orgs } = await needClient();
+  const { data } = await sb.from("messages").select("id,org_id,sender_id,body,created_at").eq("org_id", org.id).order("created_at", { ascending: false }).limit(100).returns<Msg[]>();
   const msgs = [...(data ?? [])].reverse();
   return (
-    <Shell me={me} active="/portal/messages" title="Messages" error={error}>
+    <Shell me={me} orgs={orgs} org={org} active="/portal/messages" title="Messages" error={error}>
       <div className="pcard">
         <div className="thread">{!msgs.length ? <p className="mu">No messages yet. Write to your Accountax team below.</p> : msgs.map((m) => (
           <div key={m.id} className={m.sender_id === me.id ? "bub me" : "bub"}><small className="mu">{m.sender_id === me.id ? "You" : "Accountax"} · {fmtDate(m.created_at)}</small><br />{m.body}</div>))}</div>

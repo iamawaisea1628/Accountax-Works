@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 import Shell from "../../../components/portal/Shell";
-import { need } from "../../../lib/portal/session";
+import { needClient } from "../../../lib/portal/session";
 import { setRequestStatus } from "../actions";
 import { fmtDate, pill, type Req } from "../../../lib/portal/format";
 
 async function Content({ sp }: { sp: Promise<{ error?: string }> }) {
   const { error } = await sp;
-  const { sb, me } = await need("client");
-  const { data } = await sb.from("requests").select("id,client_id,title,details,due_date,status,created_at").order("created_at", { ascending: false }).limit(200).returns<Req[]>();
+  const { sb, me, org, orgs } = await needClient();
+  const { data } = await sb.from("requests").select("id,org_id,title,details,due_date,status,created_at").eq("org_id", org.id).order("created_at", { ascending: false }).limit(200).returns<Req[]>();
   return (
-    <Shell me={me} active="/portal/requests" title="Requests" error={error}>
+    <Shell me={me} orgs={orgs} org={org} active="/portal/requests" title="Requests" error={error}>
       <p className="mu">Things Accountax needs from you. Upload what is asked under Documents, then mark the request as submitted.</p>
       {!data?.length ? <div className="pcard"><p className="mu">No requests yet.</p></div> : data.map((r) => (
         <div className="pcard" key={r.id}>

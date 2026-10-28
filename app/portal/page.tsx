@@ -1,18 +1,18 @@
 import { Suspense } from "react";
 import Shell from "../../components/portal/Shell";
-import { need } from "../../lib/portal/session";
+import { needClient } from "../../lib/portal/session";
 import { fmtDate, money, pill, type Req, type Inv, type Msg } from "../../lib/portal/format";
 
 async function Content() {
-  const { sb, me } = await need("client");
+  const { sb, me, org, orgs } = await needClient();
   const [reqs, invs, docs, msgs] = await Promise.all([
-    sb.from("requests").select("id,client_id,title,details,due_date,status,created_at", { count: "exact" }).neq("status", "done").order("due_date", { ascending: true, nullsFirst: false }).limit(5).returns<Req[]>(),
-    sb.from("invoices").select("id,client_id,number,description,amount,currency,due_date,status", { count: "exact" }).eq("status", "unpaid").order("due_date").limit(5).returns<Inv[]>(),
-    sb.from("documents").select("id", { count: "exact", head: true }),
-    sb.from("messages").select("id,client_id,sender_id,body,created_at").order("created_at", { ascending: false }).limit(3).returns<Msg[]>(),
+    sb.from("requests").select("id,org_id,title,details,due_date,status,created_at", { count: "exact" }).eq("org_id", org.id).neq("status", "done").order("due_date", { ascending: true, nullsFirst: false }).limit(5).returns<Req[]>(),
+    sb.from("invoices").select("id,org_id,number,description,amount,currency,due_date,status", { count: "exact" }).eq("org_id", org.id).eq("status", "unpaid").order("due_date").limit(5).returns<Inv[]>(),
+    sb.from("documents").select("id", { count: "exact", head: true }).eq("org_id", org.id),
+    sb.from("messages").select("id,org_id,sender_id,body,created_at").eq("org_id", org.id).order("created_at", { ascending: false }).limit(3).returns<Msg[]>(),
   ]);
   return (
-    <Shell me={me} active="/portal" title={`Welcome, ${me.full_name || me.email}`}>
+    <Shell me={me} orgs={orgs} org={org} active="/portal" title={`Welcome, ${me.full_name || me.email}`}>
       <div className="kpis">
         <a className="card kpi" href="/portal/requests"><b>{reqs.count ?? 0}</b><span>Open requests</span></a>
         <a className="card kpi" href="/portal/invoices"><b>{invs.count ?? 0}</b><span>Unpaid invoices</span></a>

@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import Shell from "../../../components/portal/Shell";
-import { need } from "../../../lib/portal/session";
+import { needClient } from "../../../lib/portal/session";
 import { fmtDate, money, pill, type Inv } from "../../../lib/portal/format";
 
 async function Content() {
-  const { sb, me } = await need("client");
-  const { data } = await sb.from("invoices").select("id,client_id,number,description,amount,currency,due_date,status").order("created_at", { ascending: false }).limit(200).returns<Inv[]>();
+  const { sb, me, org, orgs } = await needClient();
+  const { data } = await sb.from("invoices").select("id,org_id,number,description,amount,currency,due_date,status").eq("org_id", org.id).order("created_at", { ascending: false }).limit(200).returns<Inv[]>();
   return (
-    <Shell me={me} active="/portal/invoices" title="Invoices">
+    <Shell me={me} orgs={orgs} org={org} active="/portal/invoices" title="Invoices">
       <div className="pcard">
         {!data?.length ? <p className="mu">No invoices yet.</p> : (
           <div className="scroll"><table className="pt"><thead><tr><th>Number</th><th>Description</th><th>Amount</th><th>Due</th><th>Status</th></tr></thead><tbody>

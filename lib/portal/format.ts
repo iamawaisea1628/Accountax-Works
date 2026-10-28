@@ -3,8 +3,11 @@ export const fmtSize = (n: number | null) => (n == null ? "" : n < 1048576 ? `${
 export const money = (n: number | string, c: string) => `${c} ${Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 export const who = (p?: { full_name?: string | null; company?: string | null; email?: string | null } | null) => p?.company || p?.full_name || p?.email || "Client";
 export type Prof = { id: string; email: string | null; full_name: string | null; company: string | null; phone?: string | null; country?: string | null; role?: string };
-export type Doc = { id: string; name: string; size_bytes: number | null; created_at: string; client_id: string; uploaded_by: string };
-export type Req = { id: string; client_id: string; title: string; details: string | null; due_date: string | null; status: string; created_at: string };
-export type Inv = { id: string; client_id: string; number: string; description: string | null; amount: number; currency: string; due_date: string | null; status: string };
-export type Msg = { id: string; client_id: string; sender_id: string; body: string; created_at: string };
+export type Doc = { id: string; name: string; size_bytes: number | null; created_at: string; org_id: string; uploaded_by: string };
+export type Req = { id: string; org_id: string; title: string; details: string | null; due_date: string | null; status: string; created_at: string };
+export type Inv = { id: string; org_id: string; number: string; description: string | null; amount: number; currency: string; due_date: string | null; status: string };
+export type Msg = { id: string; org_id: string; sender_id: string; body: string; created_at: string };
 export const pill = (s: string) => (s === "done" || s === "paid" ? "ok" : s === "submitted" ? "warn" : s === "void" ? "bad" : "");
+export type Org = { id: string; name: string };
+export type OrgFull = Org & { client_type: string; country: string | null; email: string | null; phone: string | null; status: string };
+export const TYPES: [string, string][] = [["company", "Company"], ["individual", "Individual"], ["sole_proprietor", "Sole proprietor"], ["partnership", "Partnership"], ["non_profit", "Non-profit"], ["other", "Other"]];

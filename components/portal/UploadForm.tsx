@@ -6,12 +6,12 @@ import { supabaseBrowser } from "../../lib/supabase/browser";
 const MAX = 20 * 1024 * 1024;
 const OK = /\.(pdf|csv|xlsx|xls|docx|png|jpe?g)$/i;
 
-// userId = who is uploading. target = whose folder (defaults to the uploader; staff pass the client id).
-export default function UploadForm({ userId, target }: { userId: string; target?: string }) {
+// userId = who is uploading. orgId = the client organization whose folder receives the file.
+export default function UploadForm({ userId, orgId }: { userId: string; orgId: string }) {
   const router = useRouter();
   const [msg, setMsg] = useState<{ t: string; ok: boolean }>({ t: "", ok: false });
   const [busy, setBusy] = useState(false);
-  const dest = target ?? userId;
+  const dest = orgId;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function UploadForm({ userId, target }: { userId: string; target?
     const path = `${dest}/${crypto.randomUUID()}-${safe}`;
     const up = await sb.storage.from("client-docs").upload(path, file, { contentType: file.type || undefined, upsert: false });
     if (up.error) { setBusy(false); return setMsg({ t: "Upload failed. Please try again.", ok: false }); }
-    const ins = await sb.from("documents").insert({ client_id: dest, uploaded_by: userId, name: file.name.slice(0, 200), path, size_bytes: file.size });
+    const ins = await sb.from("documents").insert({ org_id: dest, uploaded_by: userId, name: file.name.slice(0, 200), path, size_bytes: file.size });
     if (ins.error) { await sb.storage.from("client-docs").remove([path]); setBusy(false); return setMsg({ t: "Upload failed. Please try again.", ok: false }); }
     form.reset(); setBusy(false); setMsg({ t: "File uploaded.", ok: true }); router.refresh();
   }
