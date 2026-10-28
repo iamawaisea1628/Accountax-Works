@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // Portal pages and APIs contain private data: never let browsers or proxies cache them.
+      { source: "/portal/:path*", headers: [{ key: "Cache-Control", value: "no-store, max-age=0" }] },
+      { source: "/api/:path*", headers: [{ key: "Cache-Control", value: "no-store, max-age=0" }] },
+    ];
   },
   turbopack: {
     rules: {

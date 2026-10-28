@@ -9,6 +9,10 @@ export const getCtx = cache(async () => {
   const { data: { user } } = await sb.auth.getUser();
   if (!user) redirect("/portal/login");
   const { data } = await sb.from("profiles").select("id,email,full_name,company,role").eq("id", user.id).maybeSingle<Me>();
+  if (data?.role === "staff" && process.env.PORTAL_REQUIRE_STAFF_MFA === "true") {
+    const { data: a } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (a?.currentLevel !== "aal2") redirect("/portal/mfa"); // staff must complete two-factor
+  }
   return { sb, user, me: data };
 });
 

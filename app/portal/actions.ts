@@ -33,10 +33,13 @@ export async function createClientAccount(f: FormData) {
   await who(true);
   const email = txt(f, "email", 150).toLowerCase(), name = txt(f, "full_name", 100), password = String(f.get("password") ?? "");
   if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) done(ret, "Enter a name and a valid email.");
-  if (password.length < 10) done(ret, "Password must be at least 10 characters.");
+  if (password && password.length < 10) done(ret, "Password must be at least 10 characters, or leave it blank to email an invitation.");
   const admin = supabaseAdmin();
   if (!admin) done(ret, "Add SUPABASE_SERVICE_ROLE_KEY in Vercel (server-only) to create clients from here.");
-  const { data, error } = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: name } });
+  // Blank password = invitation email (no shared password). Needs the Supabase Invite email template set up.
+  const { data, error } = password
+    ? await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: name } })
+    : await admin.auth.admin.inviteUserByEmail(email, { data: { full_name: name }, redirectTo: portalUrl("/portal/set-password") });
   if (error || !data.user) done(ret, "Could not create the client. The email may already exist.");
   await admin.from("profiles").update({ full_name: name, company: txt(f, "company", 120) || null, phone: txt(f, "phone", 40) || null, country: txt(f, "country", 80) || null }).eq("id", data.user.id);
   done(`/portal/admin/clients/${data.user.id}`);

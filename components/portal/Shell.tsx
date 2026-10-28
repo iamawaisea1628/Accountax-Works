@@ -1,4 +1,5 @@
 import type { Me } from "../../lib/portal/session";
+import IdleLogout from "./IdleLogout";
 
 const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"], ["/portal/profile", "Profile"]];
 const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"], ["/portal/profile", "Profile"]];
@@ -7,6 +8,7 @@ export default function Shell({ me, active, title, error, children }: { me: Me; 
   const staff = me.role === "staff";
   return (
     <div className="app">
+      <IdleLogout />
       <aside className="side">
         <a className="logo" href="/"><span>ACCOUNT<b>AX</b></span></a>
         <p className="role">{staff ? "Admin workspace" : "Client portal"}</p>

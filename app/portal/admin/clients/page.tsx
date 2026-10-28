@@ -16,14 +16,14 @@ async function Content({ sp }: { sp: Promise<{ error?: string }> }) {
   return (
     <Shell me={me} active="/portal/admin/clients" title="Clients" error={error}>
       <div className="pcard"><h2>Add a client</h2>
-        <p className="mu">Creates a verified client login. Share the password with the client privately.</p>
+        <p className="mu">Leave the password blank to email the client an invitation link, or set one and share it privately.</p>
         <form className="pf prow" action={createClientAccount}>
           <div><label htmlFor="fn">Full name</label><input id="fn" name="full_name" required maxLength={100} /></div>
           <div><label htmlFor="em">Email</label><input id="em" name="email" type="email" required maxLength={150} /></div>
           <div><label htmlFor="co">Company</label><input id="co" name="company" maxLength={120} /></div>
           <div><label htmlFor="ph">Phone</label><input id="ph" name="phone" maxLength={40} /></div>
           <div><label htmlFor="ct">Country</label><input id="ct" name="country" maxLength={80} /></div>
-          <div><label htmlFor="pw">Temporary password (min 10 characters)</label><input id="pw" name="password" type="text" required minLength={10} autoComplete="off" /></div>
+          <div><label htmlFor="pw">Temporary password (optional, min 10)</label><input id="pw" name="password" type="text" minLength={10} autoComplete="off" placeholder="Leave blank to email an invitation" /></div>
           <div><button className="btn" type="submit">Create Client</button></div>
         </form></div>
       <div className="pcard"><h2>All clients ({profs.data?.length ?? 0})</h2>

@@ -21,6 +21,7 @@ async function Content({ sp }: { sp: Promise<{ error?: string; saved?: string }>
           <div><label htmlFor="pk">Country</label><input id="pk" name="country" defaultValue={p?.country ?? ""} maxLength={80} /></div>
           <div><button className="btn" type="submit">Save Details</button></div>
         </form></div>
+      <div className="pcard"><h2>Two-factor authentication</h2><p className="mu">Adds a 6-digit code from an authenticator app to your sign-in. Required for staff.</p><a className="btn o" href="/portal/mfa">Set up or verify 2FA</a></div>
       <div className="pcard"><h2>Change password</h2><SetPasswordForm /></div>
     </Shell>
   );
