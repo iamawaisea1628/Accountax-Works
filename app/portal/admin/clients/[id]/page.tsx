@@ -3,16 +3,17 @@ import { notFound } from "next/navigation";
 import Shell from "../../../../../components/portal/Shell";
 import UploadForm from "../../../../../components/portal/UploadForm";
 import { need } from "../../../../../lib/portal/session";
+import { EngagementsTab, OnboardingTab, ApprovalsTab, NotesTab } from "../../../../../components/portal/AdminTabs";
 import { createRequest, setRequestStatus, createInvoice, setInvoiceStatus, sendMessage, addOrgMember, assignStaff, unassignStaff } from "../../../actions";
-import { fmtDate, fmtSize, money, pill, TYPES, type OrgFull, type Doc, type Req, type Inv, type Msg } from "../../../../../lib/portal/format";
+import { fmtDate, fmtSize, money, pill, catLabel, TYPES, type OrgFull, type Doc, type Req, type Inv, type Msg } from "../../../../../lib/portal/format";
 
-const TABS: [string, string][] = [["documents", "Documents"], ["requests", "Requests"], ["invoices", "Invoices"], ["messages", "Messages"], ["activity", "Activity"], ["team", "Team"]];
+const TABS: [string, string][] = [["engagements", "Engagements"], ["onboarding", "Onboarding"], ["documents", "Documents"], ["requests", "Requests"], ["approvals", "Approvals"], ["invoices", "Invoices"], ["messages", "Messages"], ["notes", "Notes"], ["activity", "Activity"], ["team", "Team"]];
 const hid = (n: string, v: string) => <input type="hidden" name={n} value={v} />;
 
 async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Promise<{ tab?: string; error?: string }> }) {
   const { id } = await params;
   const { tab: t, error } = await sp;
-  const tab = TABS.some(([k]) => k === t) ? (t as string) : "documents";
+  const tab = TABS.some(([k]) => k === t) ? (t as string) : "engagements";
   const { sb, me } = await need("staff");
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
   const { data: c } = await sb.from("organizations").select("id,name,client_type,country,email,phone,status").eq("id", id).maybeSingle<OrgFull>();
@@ -20,7 +21,7 @@ async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Pr
   const ret = `/portal/admin/clients/${id}?tab=${tab}`;
   const q = (table: string, cols: string) => sb.from(table).select(cols).eq("org_id", id).order("created_at", { ascending: false }).limit(200);
   const [docs, reqs, invs, msgs, act, staffRows, members, assigned] = await Promise.all([
-    tab === "documents" ? q("documents", "id,name,size_bytes,created_at,org_id,uploaded_by").returns<Doc[]>() : null,
+    tab === "documents" ? q("documents", "id,name,size_bytes,created_at,org_id,uploaded_by,category").returns<Doc[]>() : null,
     tab === "requests" ? q("requests", "id,org_id,title,details,due_date,status,created_at").returns<Req[]>() : null,
     tab === "invoices" ? q("invoices", "id,org_id,number,description,amount,currency,due_date,status").returns<Inv[]>() : null,
     tab === "messages" ? q("messages", "id,org_id,sender_id,body,created_at").returns<Msg[]>() : null,
@@ -36,11 +37,16 @@ async function Content({ params, sp }: { params: Promise<{ id: string }>; sp: Pr
       <p className="mu">{TYPES.find(([v]) => v === c.client_type)?.[1]} · {c.email}{c.phone ? ` · ${c.phone}` : ""}{c.country ? ` · ${c.country}` : ""} · {c.status} · <a href="/portal/admin/clients">All clients</a></p>
       <div className="tabs">{TABS.map(([k, l]) => <a key={k} href={`/portal/admin/clients/${id}?tab=${k}`} className={tab === k ? "on" : ""}>{l}</a>)}</div>
 
+      {tab === "engagements" && <EngagementsTab sb={sb} id={id} ret={ret} />}
+      {tab === "onboarding" && <OnboardingTab sb={sb} id={id} ret={ret} />}
+      {tab === "approvals" && <ApprovalsTab sb={sb} id={id} ret={ret} />}
+      {tab === "notes" && <NotesTab sb={sb} id={id} ret={ret} meId={me.id} />}
+
       {tab === "documents" && <>
         <div className="pcard"><h2>Upload for this client</h2><UploadForm userId={me.id} orgId={id} /></div>
         <div className="pcard"><h2>Files</h2>{!docs?.data?.length ? <p className="mu">No documents yet.</p> : (
           <div className="scroll"><table className="pt"><thead><tr><th>Name</th><th>From</th><th>Date</th><th>Size</th><th /></tr></thead><tbody>
-            {docs.data.map((d) => <tr key={d.id}><td>{d.name}</td><td>{staffIds.has(d.uploaded_by) ? "Accountax" : "Client"}</td><td>{fmtDate(d.created_at)}</td><td>{fmtSize(d.size_bytes)}</td><td><a href={`/portal/download?id=${d.id}`}>Download</a></td></tr>)}
+            {docs.data.map((d) => <tr key={d.id}><td>{d.name} <span className="pill">{catLabel(d.category)}</span></td><td>{staffIds.has(d.uploaded_by) ? "Accountax" : "Client"}</td><td>{fmtDate(d.created_at)}</td><td>{fmtSize(d.size_bytes)}</td><td><a href={`/portal/download?id=${d.id}`}>Download</a></td></tr>)}
           </tbody></table></div>)}</div></>}
 
       {tab === "requests" && <>

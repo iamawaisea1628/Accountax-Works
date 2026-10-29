@@ -167,3 +167,94 @@ export async function updateProfile(f: FormData) {
   if (error) done(ret, "Could not save your details.");
   done("/portal/profile?saved=1");
 }
+
+// ---------- Phase 2B ----------
+const PILLAR_KEYS = ["accounting", "taxation", "advisory", "finance", "analytics", "fintech"];
+const STAFF_KEYS = ["owner", "manager", "accountant", "analyst", "readonly"];
+
+export async function createEngagement(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb, me } = await who(true);
+  const org_id = txt(f, "org_id"), pillar = txt(f, "pillar"), title = txt(f, "title", 200);
+  const fee = txt(f, "fee_amount", 20);
+  if (!UUID.test(org_id) || !PILLAR_KEYS.includes(pillar) || !title) done(ret, "Choose a service pillar and enter a title.");
+  if (fee && !(Number(fee) >= 0)) done(ret, "The fee must be a number.");
+  const { error } = await sb.from("engagements").insert({ org_id, pillar, title, description: txt(f, "description", 1500) || null, start_date: txt(f, "start_date") || null, end_date: txt(f, "end_date") || null, fee_amount: fee ? Number(fee) : null, fee_currency: (txt(f, "fee_currency", 3) || "PKR").toUpperCase(), created_by: me.id });
+  done(ret, error ? "Could not create the engagement." : undefined);
+}
+export async function setEngagementStatus(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb } = await who(true);
+  const id = txt(f, "id"), status = txt(f, "status");
+  if (!UUID.test(id) || !["proposed", "active", "paused", "completed"].includes(status)) done(ret, "Invalid engagement.");
+  const { error } = await sb.from("engagements").update({ status }).eq("id", id);
+  done(ret, error ? "Could not update the engagement." : undefined);
+}
+export async function toggleOnboarding(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb, me } = await who();
+  const id = txt(f, "id"), isDone = txt(f, "done") === "1";
+  if (!UUID.test(id)) done(ret, "Invalid item.");
+  const { error } = await sb.from("onboarding_items").update({ done: isDone, done_at: isDone ? new Date().toISOString() : null, done_by: isDone ? me.id : null }).eq("id", id);
+  done(ret, error ? "Could not update the checklist." : undefined);
+}
+export async function addNote(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb, me } = await who(true);
+  const org_id = txt(f, "org_id"), body = txt(f, "body", 4000);
+  if (!UUID.test(org_id) || !body) done(ret, "Write the note first.");
+  const { error } = await sb.from("org_notes").insert({ org_id, author_id: me.id, body });
+  done(ret, error ? "Could not save the note." : undefined);
+}
+export async function deleteNote(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb } = await who(true);
+  const id = txt(f, "id");
+  if (!UUID.test(id)) done(ret, "Invalid note.");
+  const { error } = await sb.from("org_notes").delete().eq("id", id);
+  done(ret, error ? "Could not delete the note (only the author can)." : undefined);
+}
+export async function createApproval(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb, me } = await who(true);
+  const org_id = txt(f, "org_id"), title = txt(f, "title", 200), doc = txt(f, "document_id");
+  if (!UUID.test(org_id) || !title || (doc && !UUID.test(doc))) done(ret, "Enter what needs approval.");
+  const { error } = await sb.from("approvals").insert({ org_id, title, details: txt(f, "details", 2000) || null, document_id: doc || null, created_by: me.id });
+  if (error) done(ret, "Could not create the approval request.");
+  await notifyOrg(sb, org_id, "Approval needed in your Accountax portal", `Hello,\n\nPlease review and approve: "${title}".\n\nOpen your portal: ${portalUrl("/portal/approvals")}\n\nAccountax Consultants`);
+  done(ret);
+}
+export async function withdrawApproval(f: FormData) {
+  const ret = txt(f, "returnTo"); const { sb } = await who(true);
+  const id = txt(f, "id");
+  if (!UUID.test(id)) done(ret, "Invalid approval.");
+  const { error } = await sb.from("approvals").delete().eq("id", id);
+  done(ret, error ? "Could not withdraw the approval request." : undefined);
+}
+export async function decideApproval(f: FormData) {
+  const ret = "/portal/approvals"; const { sb, me } = await who();
+  const id = txt(f, "id"), decision = txt(f, "decision");
+  if (!UUID.test(id) || !["approved", "rejected"].includes(decision)) done(ret, "Invalid decision.");
+  const { data } = await sb.from("approvals").update({ status: decision, comment: txt(f, "comment", 1000) || null, decided_by: me.id, decided_at: new Date().toISOString() }).eq("id", id).select("org_id,title").maybeSingle<{ org_id: string; title: string }>();
+  if (!data) done(ret, "Could not record your decision. Only a client admin can decide, and only once.");
+  await notify(staffInbox(), `Approval ${decision}: ${data.title}`, `${me.full_name || me.email} ${decision} "${data.title}".\n\nSee it: ${portalUrl(`/portal/admin/clients/${data.org_id}?tab=approvals`)}`);
+  done(ret);
+}
+
+export async function inviteStaff(f: FormData) {
+  const ret = "/portal/admin/team"; const { me } = await who(true);
+  if (me.staff_role !== "owner") done(ret, "Only an owner can add staff.");
+  const name = txt(f, "full_name", 100), email = txt(f, "email", 150).toLowerCase(), role = txt(f, "staff_role"), password = String(f.get("password") ?? "");
+  if (!name || !EMAIL.test(email) || !STAFF_KEYS.includes(role)) done(ret, "Enter a name, a valid email and a role.");
+  if (password && password.length < 10) done(ret, "Password must be at least 10 characters, or leave it blank to email an invitation.");
+  const u = await makeUser(email, name, password, me.firm_id);
+  if (u.error || !u.admin || !u.id) done(ret, u.error ?? "Could not add the staff member.");
+  await u.admin.from("profiles").update({ role: "staff", staff_role: role }).eq("id", u.id);
+  done(ret);
+}
+export async function setStaffRole(f: FormData) {
+  const ret = "/portal/admin/team"; const { me } = await who(true);
+  if (me.staff_role !== "owner") done(ret, "Only an owner can change roles.");
+  const id = txt(f, "staff_id"), role = txt(f, "staff_role");
+  if (!UUID.test(id) || !STAFF_KEYS.includes(role)) done(ret, "Invalid role.");
+  const admin = supabaseAdmin();
+  if (!admin) done(ret, "Add SUPABASE_SERVICE_ROLE_KEY in Vercel to change roles.");
+  const { data: owners } = await admin.from("profiles").select("id").eq("role", "staff").eq("staff_role", "owner").eq("firm_id", me.firm_id ?? "");
+  if (role !== "owner" && (owners ?? []).length <= 1 && (owners ?? []).some((o) => o.id === id)) done(ret, "A firm must keep at least one owner.");
+  const { error } = await admin.from("profiles").update({ staff_role: role }).eq("id", id).eq("role", "staff").eq("firm_id", me.firm_id ?? "");
+  done(ret, error ? "Could not change the role." : undefined);
+}

@@ -2,8 +2,8 @@ import type { Me, OrgRef } from "../../lib/portal/session";
 import { switchOrg } from "../../app/portal/actions";
 import IdleLogout from "./IdleLogout";
 
-const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"], ["/portal/profile", "Profile"]];
-const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"], ["/portal/profile", "Profile"]];
+const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/services", "Services"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/approvals", "Approvals"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"], ["/portal/profile", "Profile"]];
+const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"], ["/portal/admin/team", "Team"], ["/portal/profile", "Profile"]];
 
 export default function Shell({ me, active, title, error, orgs, org, children }: { me: Me; active: string; title: string; error?: string; orgs?: OrgRef[]; org?: OrgRef; children: React.ReactNode }) {
   const staff = me.role === "staff";
