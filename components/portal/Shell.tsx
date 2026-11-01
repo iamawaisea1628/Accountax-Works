@@ -1,6 +1,7 @@
 import type { Me, OrgRef } from "../../lib/portal/session";
 import { switchOrg } from "../../app/portal/actions";
 import IdleLogout from "./IdleLogout";
+import MobileMenu from "./MobileMenu";
 
 const CLIENT: [string, string][] = [["/portal", "Overview"], ["/portal/services", "Services"], ["/portal/documents", "Documents"], ["/portal/requests", "Requests"], ["/portal/approvals", "Approvals"], ["/portal/invoices", "Invoices"], ["/portal/messages", "Messages"], ["/portal/profile", "Profile"]];
 const STAFF: [string, string][] = [["/portal/admin", "Dashboard"], ["/portal/admin/clients", "Clients"], ["/portal/admin/team", "Team"], ["/portal/profile", "Profile"]];
@@ -10,7 +11,8 @@ export default function Shell({ me, active, title, error, orgs, org, children }:
   return (
     <div className="app">
       <IdleLogout />
-      <aside className="side">
+      <MobileMenu />
+      <aside className="side" id="portal-side">
         <a className="logo" href="/"><span>ACCOUNT<b>AX</b></span></a>
         <p className="role">{staff ? "Admin workspace" : "Client portal"}</p>
         {!staff && org && <p style={{ margin: 0, fontWeight: 600 }}>{org.name}</p>}
