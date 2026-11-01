@@ -16,10 +16,10 @@ export default function MobileMenu() {
   return (
     <>
       <div className="mbar">
-        <button type="button" className="burger" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="portal-side" onClick={() => setOpen(!open)}>
+        <a className="logo" href="/" aria-label="Accountax home"><span>ACCOUNT<b>AX</b></span></a>
+        <button type="button" className="burger" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="portal-side" onClick={() => setOpen(!open)}>
           <span /><span /><span />
         </button>
-        <a className="logo" href="/" aria-label="Accountax home"><span>ACCOUNT<b>AX</b></span></a>
       </div>
       {open && <button type="button" className="scrim" aria-label="Close menu" onClick={() => setOpen(false)} />}
     </>
