@@ -2,7 +2,7 @@
 // Detailed offerings (bookkeeping, payroll accounting, etc.) belong on each service's own page.
 export const S: [string, string, string, string][] = [
 ["Accounting","Accurate books, payroll accounting and financial reporting you can rely on.","Pillar 01","svc-accounting.webp"],
-["Taxation","Compliance-ready taxation support and record keeping for your jurisdiction.","Pillar 02","svc-tax.webp"],
+["Taxation","Compliance-ready taxation support and record keeping for your jurisdiction.","Pillar 02","svc-taxation.webp"],
 ["Advisory","Forecasts, budgets and virtual CFO guidance for confident decisions.","Pillar 03","svc-advisory.webp"],
 ["Finance","Cash flow, working capital and day-to-day financial management for your business.","Pillar 04","svc-finance.webp"],
 ["Analytics","Dashboards and data workflows that turn financial data into insight.","Pillar 05","svc-analytics.webp"],

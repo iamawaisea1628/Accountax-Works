@@ -2,7 +2,9 @@ import Header from "../components/Header";
 import ContactForm from "../components/ContactForm";
 import Photo from "../components/Photo";
 import HeroSlideshow from "../components/HeroSlideshow";
-import { S, ABOUT, WHY, IND, STEPS, TOOLS, INSIGHTS } from "../components/data";
+import Footer from "../components/Footer";
+import { S, ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
+import { ARTICLES } from "../content/pages";
 
 const Head = ({ eb, h, p, c = true }: { eb: string; h: string; p?: string; c?: boolean }) => (
   <div className={c ? "sh c" : "sh"}><span className="eb">{eb}</span><h2>{h}</h2>{p && <p>{p}</p>}</div>
@@ -49,7 +51,7 @@ export default function Home() {
         <section id="services" className="alt"><div className="w">
           <Head eb="What We Do" h="Our Core Services" p="Six service pillars built on accounting expertise, modern data tools and smart automation. Scope and fees are agreed after we understand your needs." />
           <div className="g3">{S.map(([t, d, tag, img]) => (
-            <a className="sc" href="#contact" key={t}>
+            <a className="sc" href={`/services/${t.toLowerCase()}/`} key={t}>
               <div className="im"><Photo file={img} label={t} alt={t} sizes="(max-width:860px) 100vw, 380px" /></div><div className="ov" />
               <div className="sb"><h3>{t}</h3><span className="ar" aria-hidden="true">→</span><div><p>{d}</p><span className="tag">{tag}</span></div></div>
             </a>))}</div>
@@ -86,15 +88,17 @@ export default function Home() {
         <section id="how"><div className="w">
           <Head eb="How We Work" h="A Clear Process, No Surprises" p="Agreed scope, defined client responsibilities and reviewed deliverables keep every engagement predictable." />
           <ol className="st">{STEPS.map(([t, d]) => <li key={t}><h3>{t}</h3><p>{d}</p></li>)}</ol>
+          <p style={{ marginTop: 28 }}><a href="/how-we-work/">Read the full engagement process</a></p>
         </div></section>
 
         <section id="insights" className="alt"><div className="w">
-          <Head eb="Insights" h="Practical Finance Resources" p="Educational articles are in preparation. Jurisdiction-specific taxation content will state the jurisdiction it applies to." />
-          <div className="g3">{INSIGHTS.map(([t, tag, img]) => (
-            <article className="ac" key={t}>
-              <div className="im"><Photo file={img} label="Article image (1200x700)" alt={t} sizes="(max-width:860px) 100vw, 380px" /></div>
-              <div className="ab"><span className="tag">{tag}</span><h3>{t}</h3><span className="soon">Article in preparation</span></div>
-            </article>))}</div>
+          <Head eb="Insights" h="Practical Finance Resources" p="General educational guides on reporting, bookkeeping, forecasting and KPIs. They are not individual advice." />
+          <div className="g3">{ARTICLES.slice(0, 3).map((a) => (
+            <a className="ac" href={`/insights/${a.slug}/`} key={a.slug}>
+              <div className="im"><Photo file={a.image} label="Article image (1200x700)" alt={a.title} sizes="(max-width:860px) 100vw, 380px" /></div>
+              <div className="ab"><span className="tag">{a.category}</span><h3>{a.title}</h3><span className="soon">Read the guide</span></div>
+            </a>))}</div>
+          <p style={{ marginTop: 28, textAlign: "center" }}><a className="btn o" href="/insights/">All insights</a></p>
         </div></section>
 
         <section id="contact"><div className="w two al">
@@ -108,15 +112,7 @@ export default function Home() {
         </div></section>
       </main>
 
-      <footer><div className="w">
-        <div className="fg">
-          <div><a className="logo" href="#top"><span>ACCOUNT<b>AX</b></span></a><p className="mu" style={{ marginTop: 14 }}>Accounting, taxation, advisory, finance and analytics for businesses that want clearer numbers.</p></div>
-          <div><h4>Company</h4><a href="#about">About</a><a href="#industries">Industries</a><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="/portal/login">Client Login</a></div>
-          <div><h4>Services</h4>{S.map((x) => <a key={x[0]} href="#services">{x[0]}</a>)}</div>
-          <div><h4>Contact</h4>{email && <a href={`mailto:${email}`}>{email}</a>}<a href="#contact">Request a Consultation</a></div>
-        </div>
-        <div className="fb"><span>&copy; Accountax Consultants. All rights reserved.</span><span>Accounting · Taxation · Advisory · Finance · Analytics</span></div>
-      </div></footer>
+      <Footer />
       {wa && <a id="wa" style={{ display: "block" }} href={`https://wa.me/${wa}`}>Chat on WhatsApp</a>}
     </>
   );
