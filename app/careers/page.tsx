@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero } from "../../components/site/Parts";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `Careers | ${SITE.name}`, description: "No vacancies are listed at the moment. You are welcome to introduce yourself." };
+export const metadata: Metadata = pageMeta(`Careers | ${SITE.name}`, "No vacancies are listed at the moment. You are welcome to introduce yourself.", "/careers/");
 
 export default function Careers() {
   return (

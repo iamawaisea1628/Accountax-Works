@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero, CtaBand } from "../../components/site/Parts";
 import Photo from "../../components/Photo";
 import { SERVICES } from "../../content/services";
 import { VALUES } from "../../content/pages";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `About ${SITE.name}`, description: "A consultancy that brings accounting, taxation support, advisory, finance, analytics and automation into one connected service." };
+export const metadata: Metadata = pageMeta(`About ${SITE.name}`, "A consultancy that brings accounting, taxation support, advisory, finance, analytics and fintech into one connected service.", "/about/");
 
 export default function About() {
   return (

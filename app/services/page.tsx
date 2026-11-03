@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero, CtaBand } from "../../components/site/Parts";
 import Photo from "../../components/Photo";
 import { SERVICES } from "../../content/services";
 import { SITUATIONS } from "../../content/pages";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `Services | ${SITE.name}`, description: "Six service pillars: Accounting, Taxation, Advisory, Finance, Analytics and Fintech. Scoped to your business and jurisdiction." };
+export const metadata: Metadata = pageMeta(`Services | ${SITE.name}`, "Six service pillars: Accounting, Taxation, Advisory, Finance, Analytics and Fintech. Scoped to your business and jurisdiction.", "/services/");
 
 export default function Services() {
   return (

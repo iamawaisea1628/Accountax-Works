@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Shell, Crumbs, CtaBand } from "../../../components/site/Parts";
+import { Shell, Crumbs, CtaBand, JsonLd } from "../../../components/site/Parts";
+import { pageMeta } from "../../../lib/seo";
+import { SITE } from "../../../content/site";
 import { ARTICLES, articleBySlug, readingTime } from "../../../content/pages";
 import { bySlug } from "../../../content/services";
 
@@ -8,7 +10,9 @@ export const dynamicParams = false;
 export const generateStaticParams = () => ARTICLES.map((a) => ({ slug: a.slug }));
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const a = articleBySlug((await params).slug);
-  return a ? { title: `${a.title} | Accountax Consultants`, description: a.excerpt } : {};
+  if (!a) return {};
+  const full = `${a.title} | ${SITE.name}`;
+  return pageMeta(full.length <= 70 ? full : a.title, a.excerpt, `/insights/${a.slug}/`, { type: "article" });
 }
 
 export default async function Article({ params }: { params: Promise<{ slug: string }> }) {
@@ -17,6 +21,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
   const more = ARTICLES.filter((x) => x.slug !== a.slug).slice(0, 3);
   return (
     <Shell>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.excerpt, mainEntityOfPage: `${SITE.url}/insights/${a.slug}/`, publisher: { "@type": "Organization", name: SITE.name } }} />
       <section className="phero"><div className="w narrow">
         <Crumbs items={[["Home", "/"], ["Insights", "/insights/"], [a.title, `/insights/${a.slug}/`]]} />
         <span className="tag">{a.category}</span>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero, CtaBand } from "../../components/site/Parts";
 import Photo from "../../components/Photo";
 import { ARTICLES, readingTime } from "../../content/pages";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `Insights | ${SITE.name}`, description: "Practical guides on reporting, bookkeeping, forecasting and KPIs for growing businesses." };
+export const metadata: Metadata = pageMeta(`Insights | ${SITE.name}`, "Practical guides on reporting, bookkeeping, forecasting and KPIs for growing businesses.", "/insights/");
 
 export default async function Insights({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const { category } = await searchParams;

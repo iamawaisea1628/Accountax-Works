@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Shell, PageHero, Checks, Faq, CtaBand } from "../../../components/site/Parts";
+import { Shell, PageHero, Checks, Faq, CtaBand, JsonLd } from "../../../components/site/Parts";
+import { pageMeta } from "../../../lib/seo";
+import { SITE } from "../../../content/site";
 import Photo from "../../../components/Photo";
+import ProcessFlow from "../../../components/site/ProcessFlow";
 import { SERVICES, bySlug } from "../../../content/services";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => SERVICES.map((s) => ({ slug: s.slug }));
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const s = bySlug((await params).slug);
-  return s ? { title: s.metaTitle, description: s.metaDescription } : {};
+  return s ? pageMeta(s.metaTitle, s.metaDescription, `/services/${s.slug}/`) : {};
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -16,6 +19,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!s) notFound();
   return (
     <Shell>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: `${s.name} services`, serviceType: s.name, description: s.metaDescription, url: `${SITE.url}/services/${s.slug}/`, provider: { "@type": "ProfessionalService", name: SITE.name, url: SITE.url } }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: s.faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }} />
       <PageHero crumbs={[["Home", "/"], ["Services", "/services/"], [s.name, `/services/${s.slug}/`]]} eyebrow={`Pillar ${String(s.order).padStart(2, "0")}: ${s.name}`} title={s.h1} lead={s.lead}>
         <div className="cta"><a className="btn" href="/contact/">{s.cta} ✦</a><a className="btn o" href="/services/">All services</a></div>
       </PageHero>
@@ -33,7 +38,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </div></section>
       <section className="alt"><div className="w">
         <div className="sh"><span className="eb">How an engagement works</span><h2>A practical process</h2></div>
-        <ol className="st">{s.process.map(([t, d]) => <li key={t}><h3>{t}</h3><p>{d}</p></li>)}</ol>
+        <ProcessFlow steps={s.process.map(([title, text]) => ({ title, text }))} />
         <p style={{ marginTop: 24 }}><a href="/how-we-work/">Read the full engagement process</a></p>
       </div></section>
       <section><div className="w two">

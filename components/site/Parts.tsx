@@ -28,6 +28,8 @@ export function PageHero({ crumbs, eyebrow, title, lead, children }: { crumbs?: 
   );
 }
 
+export function JsonLd({ data }: { data: object }) { return <script type="application/ld+json">{JSON.stringify(data)}</script>; }
+
 export function Checks({ items }: { items: string[] }) { return <ul className="checks">{items.map((x) => <li key={x}>{x}</li>)}</ul>; }
 
 export function Faq({ items }: { items: [string, string][] }) {

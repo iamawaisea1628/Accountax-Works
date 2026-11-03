@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero, Checks, CtaBand } from "../../components/site/Parts";
 import { INDUSTRIES } from "../../content/pages";
 import { bySlug } from "../../content/services";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `Industries | ${SITE.name}`, description: "How our six service pillars apply to startups, ecommerce, professional services, property, retail, multi-entity groups, accounting practices and manufacturing." };
+export const metadata: Metadata = pageMeta(`Industries | ${SITE.name}`, "How our six service pillars apply to startups, ecommerce, professional services, property, retail, multi-entity groups, accounting practices and manufacturing.", "/industries/");
 
 export default function Industries() {
   return (

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero } from "../../components/site/Parts";
 import ContactForm from "../../components/ContactForm";
 import { SITE } from "../../content/site";
 
-export const metadata: Metadata = { title: `Contact | ${SITE.name}`, description: "Request a consultation. Tell us what you need and where your business operates." };
+export const metadata: Metadata = pageMeta(`Contact | ${SITE.name}`, "Request a consultation. Tell us what you need and where your business operates.", "/contact/");
 
 export default function Contact() {
   return (

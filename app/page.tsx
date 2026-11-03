@@ -3,6 +3,7 @@ import ContactForm from "../components/ContactForm";
 import Photo from "../components/Photo";
 import HeroSlideshow from "../components/HeroSlideshow";
 import Footer from "../components/Footer";
+import ProcessFlow from "../components/site/ProcessFlow";
 import { S, ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
 import { ARTICLES } from "../content/pages";
 
@@ -87,7 +88,7 @@ export default function Home() {
 
         <section id="how"><div className="w">
           <Head eb="How We Work" h="A Clear Process, No Surprises" p="Agreed scope, defined client responsibilities and reviewed deliverables keep every engagement predictable." />
-          <ol className="st">{STEPS.map(([t, d]) => <li key={t}><h3>{t}</h3><p>{d}</p></li>)}</ol>
+          <ProcessFlow steps={STEPS.map(([title, text]) => ({ title, text }))} />
           <p style={{ marginTop: 28 }}><a href="/how-we-work/">Read the full engagement process</a></p>
         </div></section>
 

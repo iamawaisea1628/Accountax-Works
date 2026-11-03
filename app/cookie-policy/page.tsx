@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero } from "../../components/site/Parts";
 import { LEGAL } from "../../content/pages";
 
 const page = LEGAL["cookie-policy"];
-export const metadata: Metadata = { title: `${page.title} | Accountax Consultants`, description: page.intro };
+export const metadata: Metadata = pageMeta(`${page.title} | Accountax Consultants`, "How the Accountax Consultants website and portal use cookies.", "/cookie-policy/", { index: false }); // not indexed until the placeholders are completed and reviewed
 
 export default function Legal() {
   return (
