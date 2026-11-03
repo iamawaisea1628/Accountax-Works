@@ -35,7 +35,7 @@ nav li>a:not(.btn):hover,nav li>a.act{color:var(--g);background:rgba(212,175,87,
 .stats b{display:block;font:600 2rem var(--fd),Georgia,serif;color:var(--g)}.stats span{font-size:.85rem;color:var(--mu)}
 /* sections */
 section{padding:104px 0}.alt{background:linear-gradient(135deg,#251c0c 0%,#15130f 50%,#2a200d 100%);border-block:1px solid var(--bd)}
-.sh{max-width:760px;margin-bottom:52px}.sh.c{margin-inline:auto;text-align:center}.sh p{color:var(--mu);margin-inline:auto}
+.sh{max-width:760px;margin:0 auto 52px;text-align:center}.sh.c{margin-inline:auto;text-align:center}.sh p{color:var(--mu);margin-inline:auto}
 .eb{display:block;color:var(--g);font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px}
 .eb.line{display:flex;align-items:center;gap:14px}.eb.line::before{content:"";width:34px;height:1px;background:var(--g)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:72px}.al{align-items:center}
@@ -105,9 +105,9 @@ section{padding:68px 0}.hero{min-height:auto}.cbox{padding:24px}}
 
 /* ---- detail pages ---- */
 .phero{padding:clamp(48px,7vw,96px) 0 clamp(36px,5vw,64px);background:radial-gradient(ellipse 60% 80% at 85% 0%,rgba(212,175,87,.13),transparent 70%);border-bottom:1px solid var(--bd)}
-.phero h1{font-size:clamp(2rem,4.6vw,3.6rem);max-width:22ch}.phero .lead{font-size:1.15rem;color:#d9d5cb;max-width:62ch;margin-left:0}
+.phero{text-align:center}.phero p{margin-inline:auto}.phero h1{font-size:clamp(2rem,4.6vw,3.6rem);max-width:22ch;margin-inline:auto}.phero .lead{font-size:1.15rem;color:#d9d5cb;max-width:62ch;margin-inline:auto}.phero .cta{justify-content:center}.phero .eb{margin-inline:auto}
 .w.narrow{max-width:820px}
-.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0 0 22px;font-size:.85rem;color:var(--mu)}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:0;margin:0 0 22px;font-size:.85rem;color:var(--mu)}
 .crumbs li+li::before{content:"/";margin-right:6px;color:var(--g3)}.crumbs a{text-decoration:none}.crumbs a:hover{color:var(--g)}
 .prose h2{font-size:clamp(1.4rem,2.4vw,2rem);margin-top:1.4em}.prose h2:first-child{margin-top:0}
 .prose p,.prose li{color:#d9d5cb}.prose ul{padding-left:20px}.prose li{margin:6px 0}
