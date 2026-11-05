@@ -116,7 +116,7 @@ export async function createRequest(f: FormData) {
   if (!UUID.test(org_id) || !title) done(ret, "Enter a title for the request.");
   const { error } = await sb.from("requests").insert({ org_id, title, details: txt(f, "details", 2000) || null, due_date: txt(f, "due_date") || null, created_by: me.id });
   if (error) done(ret, "Could not create the request.");
-  await notifyOrg(sb, org_id, "New request in your Accountax portal", `Hello,\n\nAccountax has added a new request for you: "${title}".\n\nOpen your portal: ${portalUrl("/portal/requests")}\n\nAccountax Consultants`);
+  await notifyOrg(sb, org_id, "New request in your Accountax portal", `Hello,\n\nAccountax has added a new request for you: "${title}".\n\nOpen your portal: ${portalUrl("/portal/requests")}\n\nAccountax`);
   done(ret);
 }
 
@@ -136,7 +136,7 @@ export async function createInvoice(f: FormData) {
   if (!UUID.test(org_id) || !number || !(amount > 0)) done(ret, "Enter an invoice number and an amount above zero.");
   const { error } = await sb.from("invoices").insert({ org_id, number, description: txt(f, "description", 300) || null, amount, currency: (txt(f, "currency", 3) || "PKR").toUpperCase(), due_date: txt(f, "due_date") || null, created_by: me.id });
   if (error) done(ret, "Could not create the invoice (is the number already used?).");
-  await notifyOrg(sb, org_id, `New invoice ${number} from Accountax`, `Hello,\n\nA new invoice (${number}) is available in your portal.\n\nView it: ${portalUrl("/portal/invoices")}\n\nAccountax Consultants`);
+  await notifyOrg(sb, org_id, `New invoice ${number} from Accountax`, `Hello,\n\nA new invoice (${number}) is available in your portal.\n\nView it: ${portalUrl("/portal/invoices")}\n\nAccountax`);
   done(ret);
 }
 
@@ -155,7 +155,7 @@ export async function sendMessage(f: FormData) {
   const { error } = await sb.from("messages").insert({ org_id, sender_id: me.id, body });
   if (error) done(ret, "Could not send the message.");
   if (me.role === "client") await notify(staffInbox(), `New message from ${me.full_name || me.email}`, `You have a new portal message.\n\nOpen it: ${portalUrl(`/portal/admin/clients/${org_id}?tab=messages`)}`);
-  else await notifyOrg(sb, org_id, "New message from Accountax", `Hello,\n\nYou have a new message in your Accountax portal.\n\nRead it: ${portalUrl("/portal/messages")}\n\nAccountax Consultants`);
+  else await notifyOrg(sb, org_id, "New message from Accountax", `Hello,\n\nYou have a new message in your Accountax portal.\n\nRead it: ${portalUrl("/portal/messages")}\n\nAccountax`);
   done(ret);
 }
 
@@ -215,7 +215,7 @@ export async function createApproval(f: FormData) {
   if (!UUID.test(org_id) || !title || (doc && !UUID.test(doc))) done(ret, "Enter what needs approval.");
   const { error } = await sb.from("approvals").insert({ org_id, title, details: txt(f, "details", 2000) || null, document_id: doc || null, created_by: me.id });
   if (error) done(ret, "Could not create the approval request.");
-  await notifyOrg(sb, org_id, "Approval needed in your Accountax portal", `Hello,\n\nPlease review and approve: "${title}".\n\nOpen your portal: ${portalUrl("/portal/approvals")}\n\nAccountax Consultants`);
+  await notifyOrg(sb, org_id, "Approval needed in your Accountax portal", `Hello,\n\nPlease review and approve: "${title}".\n\nOpen your portal: ${portalUrl("/portal/approvals")}\n\nAccountax`);
   done(ret);
 }
 export async function withdrawApproval(f: FormData) {

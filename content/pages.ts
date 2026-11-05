@@ -117,8 +117,8 @@ export const LEGAL: Record<string, { title: string; intro: string; sections: Blo
       { h: "Governing law", p: ["[State the governing law and courts before publication.]"] },
     ],
   },
-  "professional-disclaimer": {
-    title: "Professional Disclaimer", intro: "This is a draft template that has not yet been reviewed by a lawyer.",
+  "disclaimer": {
+    title: "Disclaimer", intro: "This is a draft template that has not yet been reviewed by a lawyer.",
     sections: [
       { h: "General information only", p: ["Information on this website is provided for general information. It does not take your circumstances into account and is not individual advice."] },
       { h: "Jurisdiction", p: ["Accounting, taxation and related rules differ by country. We confirm the scope and availability of any service for your jurisdiction before an engagement begins. We do not claim to provide every service in every country."] },

@@ -17,7 +17,7 @@ async function Content({ params }: { params: Promise<{ id: string }> }) {
     <Shell me={me} active={staff ? "/portal/admin/clients" : "/portal/invoices"} title={`Invoice ${inv.number}`}>
       <div className="pcard invoice">
         <div className="prow">
-          <div><p className="mu">From</p><p><strong>Accountax Consultants</strong></p></div>
+          <div><p className="mu">From</p><p><strong>Accountax</strong></p></div>
           <div><p className="mu">Bill to</p><p><strong>{c?.name}</strong><br />{c?.email}{c?.country ? <><br />{c.country}</> : null}</p></div>
         </div>
         <div className="scroll"><table className="pt"><thead><tr><th>Invoice</th><th>Issued</th><th>Due</th><th>Status</th></tr></thead><tbody>

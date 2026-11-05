@@ -4,7 +4,7 @@ import { Shell, PageHero } from "../../components/site/Parts";
 import { LEGAL } from "../../content/pages";
 
 const page = LEGAL["privacy-policy"];
-export const metadata: Metadata = pageMeta(`${page.title} | Accountax Consultants`, "How Accountax Consultants handles personal information.", "/privacy-policy/", { index: false }); // not indexed until the placeholders are completed and reviewed
+export const metadata: Metadata = pageMeta(`${page.title} | Accountax`, "How Accountax handles personal information.", "/privacy-policy/", { index: false }); // not indexed until the placeholders are completed and reviewed
 
 export default function Legal() {
   return (

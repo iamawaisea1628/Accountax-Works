@@ -4,6 +4,7 @@ import Photo from "../components/Photo";
 import HeroSlideshow from "../components/HeroSlideshow";
 import Footer from "../components/Footer";
 import ProcessFlow from "../components/site/ProcessFlow";
+import SixWords from "../components/site/SixWords";
 import { S, ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
 import { ARTICLES } from "../content/pages";
 
@@ -26,7 +27,7 @@ export default function Home() {
           ]} />
           <div className="veil" />
           <div className="w hc">
-            <span className="k">✦ Accounting · Taxation · Advisory · Finance · Analytics</span>
+            <SixWords variant="pill" />
             <h1>Clarity in Your Numbers.<br /><span className="gd">Confidence in Your Decisions.</span></h1>
             <p className="lead">Accounting, taxation support, financial advisory and business intelligence for companies ready to operate with greater clarity and control.</p>
             <div className="cta"><a className="btn" href="#contact">Discuss Your Requirements ✦</a><a className="btn o" href="#services">Explore Our Services</a></div>
@@ -42,7 +43,7 @@ export default function Home() {
           <div>
             <span className="eb line">Who We Are</span>
             <h2>A modern accounting and analytics consultancy built for growing businesses.</h2>
-            <p className="mu">Accountax Consultants helps businesses make better financial decisions through reliable accounting, compliant taxation, strategic financial advisory and data-driven business intelligence.</p>
+            <p className="mu">Accountax helps businesses make better financial decisions through reliable accounting, compliant taxation, strategic financial advisory and data-driven business intelligence.</p>
             <p className="mu">We combine accounting discipline with modern data tools, so your reports rest on clean books and your decisions rest on clear reports.</p>
             <ul className="ft">{ABOUT.map(([t, d], i) => <li key={t}><i>{String(i + 1).padStart(2, "0")}</i><div><h3>{t}</h3><p>{d}</p></div></li>)}</ul>
             <div className="cta"><a className="btn" href="#contact">Work With Us</a><a className="btn o" href="#services">Our Services</a></div>

@@ -8,7 +8,7 @@ const fb = DM_Sans({ subsets: ["latin"], variable: "--fb" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "Accountax Consultants | Accounting, Taxation, Advisory and Analytics",
+  title: "Accountax | Accounting, Taxation, Advisory, Finance, Analytics, Fintech",
   description: "Accounting, taxation support, financial advisory and business intelligence for companies ready to operate with greater clarity and control.",
   applicationName: SITE.name,
   alternates: { canonical: "/" },

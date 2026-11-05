@@ -6,7 +6,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return <><Header /><main id="top">{children}</main><Footer /></>;
 }
 
-export function Crumbs({ items }: { items: [string, string][] }) {
+// Breadcrumb trail intentionally not shown on pages.
+export function Crumbs(_props: { items: [string, string][] }) {
+  return null;
+}
+
+function UnusedCrumbs({ items }: { items: [string, string][] }) {
   const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items.map(([n, h], i) => ({ "@type": "ListItem", position: i + 1, name: n, item: `${SITE.url}${h}` })) };
   return (
     <div className="crumbs" role="navigation" aria-label="Breadcrumb">

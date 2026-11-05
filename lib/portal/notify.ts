@@ -1,5 +1,5 @@
 // Email via Resend. Silent no-op until RESEND_API_KEY and CONTACT_FROM_EMAIL are set. Emails never contain file contents or message text.
-export const portalUrl = (p = "/portal") => `${process.env.NEXT_PUBLIC_SITE_URL || "https://accountaxworks.vercel.app"}${p}`;
+export const portalUrl = (p = "/portal") => `${process.env.NEXT_PUBLIC_SITE_URL || "https://accountaxworks.com"}${p}`;
 
 export async function notify(to: string | null | undefined, subject: string, text: string) {
   const key = process.env.RESEND_API_KEY, from = process.env.CONTACT_FROM_EMAIL;

@@ -10,7 +10,7 @@ const steps = (a: string, b: string, c: string, d: string): [string, string][] =
 export const SERVICES: Service[] = [
   {
     slug: "accounting", name: "Accounting", order: 1, image: "svc-accounting.webp", cta: "Discuss Your Accounting Needs",
-    metaTitle: "Accounting and Financial Reporting Services | Accountax Consultants",
+    metaTitle: "Accounting and Financial Reporting Services | Accountax",
     metaDescription: "Bookkeeping, reconciliations, payroll accounting, month-end close and financial reporting, delivered remotely and scoped to your business.",
     h1: "Accounting that gives your business a clearer financial picture",
     lead: "Reliable records, reconciled accounts and timely reports, so you know where the business stands every month.",
@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "taxation", name: "Taxation", order: 2, image: "svc-taxation.webp", cta: "Discuss a Taxation Requirement",
-    metaTitle: "Taxation Support and Compliance | Accountax Consultants",
+    metaTitle: "Taxation Support and Compliance | Accountax",
     metaDescription: "Jurisdiction-specific taxation preparation, computations, VAT and GST support and compliance calendars. Scope and availability are confirmed per country.",
     h1: "Taxation support scoped to your business and jurisdiction",
     lead: "Organized records, clear computations and a compliance calendar, with the scope confirmed for your country before work begins.",
@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "advisory", name: "Advisory", order: 3, image: "svc-advisory.webp", cta: "Discuss a Business Decision",
-    metaTitle: "Business and Financial Advisory | Accountax Consultants",
+    metaTitle: "Business and Financial Advisory | Accountax",
     metaDescription: "Budgeting, forecasting, financial planning and analysis, profitability analysis and business financial models to support better decisions.",
     h1: "Practical financial insight for business decisions",
     lead: "Budgets, forecasts and analysis that turn your numbers into options you can compare and act on.",
@@ -78,7 +78,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "finance", name: "Finance", order: 4, image: "svc-finance.webp", cta: "Discuss Your Finance Function",
-    metaTitle: "Finance Function Support | Accountax Consultants",
+    metaTitle: "Finance Function Support | Accountax",
     metaDescription: "Cash-flow and working-capital management, payables and receivables, outsourced finance support and finance process design.",
     h1: "Day-to-day financial management without building a full finance team",
     lead: "Cash, working capital and routine finance operations managed with a clear rhythm, so you always know what is coming in and going out.",
@@ -99,7 +99,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "analytics", name: "Analytics", order: 5, image: "svc-analytics.webp", cta: "Discuss a Reporting Need",
-    metaTitle: "Data Analytics and Business Intelligence | Accountax Consultants",
+    metaTitle: "Data Analytics and Business Intelligence | Accountax",
     metaDescription: "Power BI and Looker Studio dashboards, SQL and Python analysis, financial KPIs and automated reporting.",
     h1: "Dashboards and analysis built on numbers you can trust",
     lead: "Financial and operational data cleaned, connected and presented so decisions rest on one set of figures.",
@@ -122,7 +122,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "fintech", name: "Fintech", order: 6, image: "svc-fintech.webp", cta: "Discuss an Automation Project",
-    metaTitle: "Fintech and Finance Automation | Accountax Consultants",
+    metaTitle: "Fintech and Finance Automation | Accountax",
     metaDescription: "Accounting system implementation, migration, integrations, reporting automation and AI-assisted document workflows with human review.",
     h1: "Systems and automation that take repetitive finance work off your team",
     lead: "Integrations, automation and well-set-up systems, with a person reviewing every output that matters.",
