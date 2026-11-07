@@ -5,6 +5,7 @@ import { pageMeta } from "../../../lib/seo";
 import { SITE } from "../../../content/site";
 import Photo from "../../../components/Photo";
 import ProcessFlow from "../../../components/site/ProcessFlow";
+import ServiceCards from "../../../components/site/ServiceCards";
 import { SERVICES, bySlug } from "../../../content/services";
 
 export const dynamicParams = false;
@@ -47,7 +48,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </div></section>
       <section className="alt"><div className="w">
         <div className="sh"><span className="eb">Related services</span><h2>Often combined with</h2></div>
-        <div className="g3">{s.related.map((r) => { const x = bySlug(r)!; return <a className="card" href={`/services/${x.slug}/`} key={r}><h3>{x.name}</h3><p>{x.lead}</p></a>; })}</div>
+        <ServiceCards only={s.related} compact />
       </div></section>
       <CtaBand label={s.cta} />
     </Shell>

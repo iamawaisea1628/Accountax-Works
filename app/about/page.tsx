@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "../../lib/seo";
 import { Shell, PageHero, CtaBand } from "../../components/site/Parts";
 import Photo from "../../components/Photo";
-import { SERVICES } from "../../content/services";
+import ServiceCards from "../../components/site/ServiceCards";
 import { VALUES } from "../../content/pages";
 import { SITE } from "../../content/site";
 
@@ -27,7 +27,7 @@ export default function About() {
       <section className="alt"><div className="w">
         <div className="sh"><span className="eb">Integrated service philosophy</span><h2>Six pillars that work from the same records</h2>
           <p>Each pillar stands on its own, and each works better alongside the others, because they draw on one set of reconciled figures.</p></div>
-        <div className="g3">{SERVICES.map((s) => <a className="card" href={`/services/${s.slug}/`} key={s.slug}><h3>{s.name}</h3><p>{s.lead}</p></a>)}</div>
+        <ServiceCards compact />
       </div></section>
       <section><div className="w">
         <div className="sh"><span className="eb">Working principles</span><h2>How we work</h2></div>

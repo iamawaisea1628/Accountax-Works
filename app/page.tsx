@@ -5,7 +5,8 @@ import HeroSlideshow from "../components/HeroSlideshow";
 import Footer from "../components/Footer";
 import ProcessFlow from "../components/site/ProcessFlow";
 import SixWords from "../components/site/SixWords";
-import { S, ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
+import ServiceCards from "../components/site/ServiceCards";
+import { ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
 import { ARTICLES } from "../content/pages";
 
 const Head = ({ eb, h, p, c = true }: { eb: string; h: string; p?: string; c?: boolean }) => (
@@ -52,11 +53,7 @@ export default function Home() {
 
         <section id="services" className="alt"><div className="w">
           <Head eb="What We Do" h="Our Core Services" p="Six service pillars built on accounting expertise, modern data tools and smart automation. Scope and fees are agreed after we understand your needs." />
-          <div className="g3">{S.map(([t, d, tag, img]) => (
-            <a className="sc" href={`/services/${t.toLowerCase()}/`} key={t}>
-              <div className="im"><Photo file={img} label={t} alt={t} sizes="(max-width:860px) 100vw, 380px" /></div><div className="ov" />
-              <div className="sb"><h3>{t}</h3><span className="ar" aria-hidden="true">→</span><div><p>{d}</p><span className="tag">{tag}</span></div></div>
-            </a>))}</div>
+          <ServiceCards />
         </div></section>
 
         <section><div className="w">
