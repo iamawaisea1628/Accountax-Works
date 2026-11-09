@@ -21,10 +21,11 @@ function UnusedCrumbs({ items }: { items: [string, string][] }) {
   );
 }
 
-export function PageHero({ crumbs, eyebrow, title, lead, children }: { crumbs?: [string, string][]; eyebrow?: string; title: string; lead?: string; children?: React.ReactNode }) {
+export function PageHero({ crumbs, eyebrow, title, lead, icon, children }: { crumbs?: [string, string][]; eyebrow?: string; title: string; lead?: string; icon?: React.ReactNode; children?: React.ReactNode }) {
   return (
     <section className="phero"><div className="w">
       {crumbs && <Crumbs items={crumbs} />}
+      {icon && <span className="svc-ico big">{icon}</span>}
       {eyebrow && <span className="eb">{eyebrow}</span>}
       <h1>{title}</h1>
       {lead && <p className="lead">{lead}</p>}
