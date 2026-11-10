@@ -49,7 +49,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="alt"><div className="w">
         <div className="sh"><span className="eb">How an engagement works</span><h2>A practical process</h2></div>
         <ProcessFlow steps={s.process.map(([title, text]) => ({ title, text }))} />
-        <p style={{ marginTop: 24 }}><a href="/how-we-work/">Read the full engagement process</a></p>
+        <div className="cta" style={{ justifyContent: "center", marginTop: 28 }}><a className="btn shine" href="/how-we-work/">Read the full engagement process <span className="arr" aria-hidden="true">→</span></a></div>
       </div></section>
       <section><div className="w two">
         <div className="prose"><span className="eb">FAQ</span><h2>Common questions</h2><p className="mu">Something else? <a href="/contact/">Send us your question</a>.</p></div>

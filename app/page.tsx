@@ -87,7 +87,7 @@ export default function Home() {
         <section id="how"><div className="w">
           <Head eb="How We Work" h="A Clear Process, No Surprises" p="Agreed scope, defined client responsibilities and reviewed deliverables keep every engagement predictable." />
           <ProcessFlow steps={STEPS.map(([title, text]) => ({ title, text }))} />
-          <p style={{ marginTop: 28 }}><a href="/how-we-work/">Read the full engagement process</a></p>
+          <div className="cta" style={{ justifyContent: "center", marginTop: 32 }}><a className="btn shine" href="/how-we-work/">Read the full engagement process <span className="arr" aria-hidden="true">→</span></a></div>
         </div></section>
 
         <section id="insights" className="alt"><div className="w">
