@@ -37,6 +37,12 @@ const P: Record<string, React.ReactNode> = {
   eye: <><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></>,
   alert: <><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16h.01" /></>,
   user: <><circle cx="12" cy="8" r="3.5" /><path d="M5 20a7 7 0 0 1 14 0" /></>,
+  rocket: <><path d="M12 3c3 2 5 5 5 9l-2 4H9l-2-4c0-4 2-7 5-9z" /><circle cx="12" cy="10" r="1.6" /><path d="M9 16l-3 3M15 16l3 3M12 17v4" /></>,
+  cart: <><path d="M3 4h2l2.4 11h10l2-8H6.5" /><circle cx="9" cy="19" r="1.5" /><circle cx="17" cy="19" r="1.5" /></>,
+  briefcase: <><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18" /></>,
+  building: <><path d="M5 21V4h9v17M14 9h5v12M3 21h18" /><path d="M8 8h3M8 12h3M8 16h3" /></>,
+  store: <><path d="M4 9l1.5-5h13L20 9" /><path d="M4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9" /><path d="M5 12v9h14v-9M10 21v-5h4v5" /></>,
+  factory: <><path d="M3 21V11l6 3v-3l6 3V6h3v15z" /><path d="M7 17h2M12 17h2M17 17h1" /></>,
 };
 const PILLAR: Record<string, string> = { accounting: "book", taxation: "taxation", advisory: "advisory", finance: "wallet", analytics: "bars", fintech: "chip" };
 const RULES: [RegExp, string][] = [

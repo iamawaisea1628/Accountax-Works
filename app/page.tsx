@@ -7,6 +7,7 @@ import ProcessFlow from "../components/site/ProcessFlow";
 import SixWords from "../components/site/SixWords";
 import ServiceCards from "../components/site/ServiceCards";
 import WhyCards from "../components/site/WhyCards";
+import IndustryCards from "../components/site/IndustryCards";
 import ToolsShowcase from "../components/site/ToolsShowcase";
 import { ABOUT, WHY, IND, STEPS } from "../components/data";
 import { ARTICLES } from "../content/pages";
@@ -63,6 +64,12 @@ export default function Home() {
           <WhyCards items={WHY} />
         </div></section>
 
+        <section id="industries" className="alt"><div className="w">
+          <Head eb="Industries" h="Built Around How Your Business Operates" p="The six pillars apply differently to each kind of business. Here are the sectors we support most." />
+          <IndustryCards />
+          <div className="cta" style={{ justifyContent: "center", marginTop: 28 }}><a className="btn o" href="/industries/">Explore all industries</a></div>
+        </div></section>
+
         <section><div className="w">
           <Head eb="Integrated Proposition" h="Books, Advice and Analytics in One Connected Team" />
           <div className="trio">
@@ -90,7 +97,7 @@ export default function Home() {
               <div className="im"><Photo file={a.image} label="Article image (1200x700)" alt={a.title} sizes="(max-width:860px) 100vw, 380px" /></div>
               <div className="ab"><span className="tag">{a.category}</span><h3>{a.title}</h3><span className="soon">Read the guide</span></div>
             </a>))}</div>
-          <p style={{ marginTop: 28, textAlign: "center" }}><a className="btn o" href="/insights/">All insights</a></p>
+          <div className="cta" style={{ justifyContent: "center", marginTop: 28 }}><a className="btn o" href="/insights/">All insights</a></div>
         </div></section>
 
         <section id="contact"><div className="w two al">
