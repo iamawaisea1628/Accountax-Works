@@ -6,6 +6,7 @@ import { SITE } from "../../../content/site";
 import Photo from "../../../components/Photo";
 import ProcessFlow from "../../../components/site/ProcessFlow";
 import ServiceCards from "../../../components/site/ServiceCards";
+import ToolsShowcase from "../../../components/site/ToolsShowcase";
 import { OfferCards, Problems, Deliverables, Chips } from "../../../components/site/ServiceBlocks";
 import { PillarIcon } from "../../../components/site/icons";
 import { SERVICES, bySlug } from "../../../content/services";
@@ -40,6 +41,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <Deliverables items={s.deliverables} />
         <div className="sh" style={{ marginTop: 56 }}><span className="eb">Who it is for</span><h2>Built for businesses like these</h2></div>
         <Chips items={s.clients} />
+      </div></section>
+      <section><div className="w">
+        <div className="sh"><span className="eb">Our toolkit</span><h2>Tools we use for {s.name}</h2><p>Platforms and technologies behind this service. We confirm the tools for your engagement during scoping.</p></div>
+        <ToolsShowcase pillar={s.slug} />
       </div></section>
       <section className="alt"><div className="w">
         <div className="sh"><span className="eb">How an engagement works</span><h2>A practical process</h2></div>

@@ -6,7 +6,9 @@ import Footer from "../components/Footer";
 import ProcessFlow from "../components/site/ProcessFlow";
 import SixWords from "../components/site/SixWords";
 import ServiceCards from "../components/site/ServiceCards";
-import { ABOUT, WHY, IND, STEPS, TOOLS } from "../components/data";
+import WhyCards from "../components/site/WhyCards";
+import ToolsShowcase from "../components/site/ToolsShowcase";
+import { ABOUT, WHY, IND, STEPS } from "../components/data";
 import { ARTICLES } from "../content/pages";
 
 const Head = ({ eb, h, p, c = true }: { eb: string; h: string; p?: string; c?: boolean }) => (
@@ -58,16 +60,7 @@ export default function Home() {
 
         <section><div className="w">
           <Head eb="Why Accountax" h="Why Businesses Choose an Integrated Finance Team" />
-          <div className="g4">{WHY.map(([t, d], i) => <div className="card" key={t}><i className="num">{String(i + 1).padStart(2, "0")}</i><h3>{t}</h3><p>{d}</p></div>)}</div>
-        </div></section>
-
-        <section id="industries" className="alt"><div className="w">
-          <Head eb="Industries" h="Support Across Key Business Sectors" p="Each service combination is a starting point, tailored during scoping." />
-          <div className="g4 ind">{IND.map(([t, d, img]) => (
-            <div className="ic" key={t} tabIndex={0}>
-              <div className="im"><Photo file={img} label={t} alt={t} sizes="(max-width:860px) 50vw, 280px" /></div><div className="ov" />
-              <div className="sb"><span /><div><h3>{t}</h3><p>{d}</p></div></div>
-            </div>))}</div>
+          <WhyCards items={WHY} />
         </div></section>
 
         <section><div className="w">
@@ -80,8 +73,8 @@ export default function Home() {
         </div></section>
 
         <section className="alt"><div className="w">
-          <Head eb="Our Toolkit" h="Tools We Work With" p="Industry-standard platforms used by finance and data professionals." />
-          <div className="tools">{TOOLS.map((x) => <div key={x}>{x}</div>)}</div>
+          <Head eb="Our Toolkit" h="Tools We Work With" p="The platforms and technologies we work with across all six services. Choose a service to see its tools." />
+          <ToolsShowcase />
         </div></section>
 
         <section id="how"><div className="w">
